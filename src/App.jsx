@@ -11,18 +11,18 @@ function App() {
   return (
     <>
       <ProjectCard porcentaje="75" titulo="Manual de Usuario - App Mobile" subtitulo="ES → EN | Cliente: TechCorp" numeroPalabras="1,250"
-        numeroTraductores="3" numeroDiasRestantes="5" botton1="Activo" botton3="Kanban" dias="Días rest." />
+        numeroTraductores="3" numeroDiasRestantes="5" estado="Activo" tablero="Kanban" />
       <ProjectCard porcentaje="92" titulo="Documentación API" subtitulo="EN → FR, DE | Cliente: DevTools" numeroPalabras="2,840"
-        numeroTraductores="5" numeroDiasRestantes="2" botton1="Revisión" botton3="Kanban" dias="Días rest." />
+        numeroTraductores="5" numeroDiasRestantes="2" estado="Revisión" tablero="Kanban" />
       <ProjectCard porcentaje="100" titulo="Sitio Web Corporativo" subtitulo="DE → ES | Cliente: Global Inc" numeroPalabras="5,120"
-        numeroTraductores="4" numeroDiasRestantes="✓" botton1="Completado" botton3="Descargar" dias="Entregado" />
+        numeroTraductores="4" estado="Completado" tablero="Descargar" entregado={true} />
       <ProjectCard porcentaje="45" titulo="Campaña Marketing Q4" subtitulo="EN → ES, PT | Cliente: Marketing Pro" numeroPalabras="890"
-        numeroTraductores="2" numeroDiasRestantes="8" botton1="Activo" botton3="Kanban" dias="Días rest." />
+        numeroTraductores="2" numeroDiasRestantes="8" estado="Activo" tablero="Kanban" />
 
-      <SummaryCard numero="24" titulo="Proyectos Activos" subtitulo="+12% este mes" />
-      <SummaryCard numero="156" titulo="Tareas Pendientes" subtitulo="-8% esta semana" />
-      <SummaryCard numero="89%" titulo="Progreso Promedio" subtitulo="+5% este mes" />
-      <SummaryCard numero="12" titulo="Colaboradores" subtitulo="+2 nuevos" />
+      <SummaryCard numero="24" titulo="Proyectos Activos" subtitulo="+12% este mes" color="green" />
+      <SummaryCard numero="156" titulo="Tareas Pendientes" subtitulo="-8% esta semana" color="red" />
+      <SummaryCard numero="89%" titulo="Progreso Promedio" subtitulo="+5% este mes" color="green" />
+      <SummaryCard numero="12" titulo="Colaboradores" subtitulo="+2 nuevos" color="green" />
     </>
   )
 }

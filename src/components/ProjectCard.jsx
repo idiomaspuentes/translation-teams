@@ -3,13 +3,13 @@ const colorStatus = {
     "Activo": "bg-green-100 text-green-700",
     "Completado": "bg-sky-100 text-sky-700",
 }
-export function ProjectCard({ porcentaje, titulo, subtitulo, numeroPalabras, numeroTraductores, numeroDiasRestantes, botton1, botton3, dias }) {
+export function ProjectCard({ porcentaje, titulo, subtitulo, numeroPalabras, numeroTraductores, numeroDiasRestantes, estado, tablero, entregado = false, }) {
     return (
 
         <div className="  bg-white px-10 py-10 w-120 h-90 rounded-2xl m-10 p-4">
             <span className="flex justify-between">
                 <h2 className="text-xl font-medium">{titulo}</h2>
-                <a href="/botton1" className={`inline-flex items-center ${colorStatus[botton1]} font-medium   bg-green-200 rounded-full px-4 py-1`}> {botton1}
+                <a href="/estado" className={`inline-flex items-center ${colorStatus[estado]} font-medium   bg-green-200 rounded-full px-4 py-1`}> {estado}
                 </a>
             </span>
             <h3 className="text-gray-500 text-left"> {subtitulo}</h3>
@@ -32,8 +32,8 @@ export function ProjectCard({ porcentaje, titulo, subtitulo, numeroPalabras, num
                 </span>
 
                 <span className="text-center">
-                    <h3 className="font-black">{numeroDiasRestantes}</h3>
-                    <h4 className="text-gray-500">{dias}</h4>
+                    <h3 className="font-black">{entregado ? "✓" : numeroDiasRestantes}</h3>
+                    <h4 className="text-gray-500">{entregado ? "Entregado" : "Días rest."}</h4>
                 </span>
             </div>
 
@@ -42,8 +42,8 @@ export function ProjectCard({ porcentaje, titulo, subtitulo, numeroPalabras, num
                     Ver Detalles
                 </a>
 
-                <a href="/botton3" className="inline-flex items-center text-black font-medium bg-white rounded-xl border-1 border-gray-300 px-6 py-2">
-                    {botton3}
+                <a href="/tablero" className="inline-flex items-center text-black font-medium bg-white rounded-xl border-1 border-gray-300 px-6 py-2">
+                    {tablero}
                 </a>
             </div>
         </div>
