@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframes - TranslationTeams</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .wireframes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .wireframe-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .wireframe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .wireframe-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-dashboard { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .icon-kanban { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .icon-reports { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+        .wireframe-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .wireframe-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .wireframe-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .wireframe-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .wireframe-features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .wireframe-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            gap: 0.5rem;
+        }
+
+        .wireframe-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .info-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .info-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .info-value {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 2rem;
+            color: #10b981;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .wireframes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">TranslationTeams</h1>
+            <p class="subtitle">Wireframes de la Aplicación de Gestión de Traducción</p>
+            <p class="description">
+                Explora los wireframes interactivos que muestran la estructura y funcionalidad 
+                de la plataforma de gestión de proyectos de traducción. Cada wireframe representa 
+                una sección clave de la aplicación final.
+            </p>
+        </header>
+
+        <div class="info-section">
+            <h2 class="info-title">Información del Proyecto</h2>
+            <div class="info-content">
+                <div class="info-item">
+                    <div class="info-label">Estado del Proyecto</div>
+                    <div class="info-value">
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            Wireframes Completados
+                        </div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Tecnologías Planificadas</div>
+                    <div class="info-value">
+                        <div class="tech-stack">
+                            <span class="tech-item">React 19</span>
+                            <span class="tech-item">Vite</span>
+                            <span class="tech-item">Tailwind CSS</span>
+                            <span class="tech-item">Zustand</span>
+                            <span class="tech-item">React Router</span>
+                            <span class="tech-item">React Query</span>
+                            <span class="tech-item">i18next</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Características Principales</div>
+                    <div class="info-value">
+                        Dashboard de proyectos, Tablero Kanban, Gestión de equipos, 
+                        Reportes avanzados, Integración Gitea, Internacionalización
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Arquitectura</div>
+                    <div class="info-value">
+                        Frontend-only, Diseño responsivo, PWA-ready, 
+                        Accesibilidad WCAG 2.1 AA, Testing integral
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wireframes-grid">
+            <a href="dashboard.html" class="wireframe-card">
+                <div class="wireframe-icon icon-dashboard">📊</div>
+                <h3 class="wireframe-title">Dashboard Principal</h3>
+                <p class="wireframe-description">
+                    Vista general con métricas de proyectos, tarjetas de progreso y 
+                    acceso rápido a funcionalidades principales.
+                </p>
+                <ul class="wireframe-features">
+                    <li>Métricas de productividad en tiempo real</li>
+                    <li>Tarjetas de proyectos con progreso visual</li>
+                    <li>Filtros avanzados y búsqueda</li>
+                    <li>Navegación intuitiva</li>
+                    <li>Selector de idioma integrado</li>
+                </ul>
+                <div class="wireframe-button">
+                    Ver Dashboard
+                    <span>→</span>
+                </div>
+            </a>
+
+            <a href="kanban.html" class="wireframe-card">
+                <div class="wireframe-icon icon-kanban">📋</div>
+                <h3 class="wireframe-title">Tablero Kanban</h3>
+                <p class="wireframe-description">
+                    Sistema de gestión de tareas estilo Kanban con drag & drop, 
+                    estados personalizables y seguimiento de progreso.
+                </p>
+                <ul class="wireframe-features">
+                    <li>Columnas configurables (Borrador, Progreso, Revisión, QA)</li>
+                    <li>Tarjetas de tareas con información detallada</li>
+                    <li>Asignación de usuarios y prioridades</li>
+                    <li>Filtros por estado, usuario y fecha</li>
+                    <li>Simulación de drag & drop visual</li>
+                </ul>
+                <div class="wireframe-button">
+                    Ver Kanban
+                    <span>→</span>
+                </div>
+            </a>
+
+            <a href="reports.html" class="wireframe-card">
+                <div class="wireframe-icon icon-reports">📈</div>
+                <h3 class="wireframe-title">Reportes y Analytics</h3>
+                <p class="wireframe-description">
+                    Análisis detallado de productividad, métricas de calidad y 
+                    reportes personalizables para gestión de equipos.
+                </p>
+                <ul class="wireframe-features">
+                    <li>Métricas de rendimiento por traductor</li>
+                    <li>Gráficos de productividad mensual</li>
+                    <li>Filtros avanzados por proyecto/cliente</li>
+                    <li>Exportación de datos en múltiples formatos</li>
+                    <li>Indicadores de calidad en tiempo real</li>
+                </ul>
+                <div class="wireframe-button">
+                    Ver Reportes
+                    <span>→</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="info-section">
+            <h2 class="info-title">Próximos Pasos de Implementación</h2>
+            <div class="info-content">
+                <div class="info-item">
+                    <div class="info-label">Fase 1: Configuración Base</div>
+                    <div class="info-value">
+                        Instalar dependencias, configurar Tailwind CSS, estructura de proyecto, 
+                        sistema de testing con Vitest
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Fase 2: Componentes UI</div>
+                    <div class="info-value">
+                        Sistema de diseño, componentes reutilizables, navegación con React Router, 
+                        internacionalización con i18next
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Fase 3: Funcionalidad Core</div>
+                    <div class="info-value">
+                        Dashboard funcional, tablero Kanban con drag & drop, gestión de estado con Zustand, 
+                        integración de APIs
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Fase 4: Características Avanzadas</div>
+                    <div class="info-value">
+                        Reportes con gráficos, integración Gitea, gestión de equipos, 
+                        optimización de rendimiento
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>
+                Wireframes creados como parte del plan integral de desarrollo • 
+                <strong>TranslationTeams</strong> © 2024
+            </p>
+        </footer>
+    </div>
+</body>
+</html> 
