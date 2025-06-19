@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
 import { ProjectCard } from './components/ProjectCard.jsx'
 import { SummaryCard } from './components/SummaryCard.jsx'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <ProjectCard porcentaje="75" titulo="Manual de Usuario - App Mobile" subtitulo="ES → EN | Cliente: TechCorp" numeroPalabras="1,250"
+const Home = () => (
+  <>
+    <h2>Bienvenido al Dashboard</h2>
+    <ProjectCard porcentaje="75" titulo="Manual de Usuario - App Mobile" subtitulo="ES → EN | Cliente: TechCorp" numeroPalabras="1,250"
         numeroTraductores="3" numeroDiasRestantes="5" estado="Activo" tablero="Kanban" />
       <ProjectCard porcentaje="92" titulo="Documentación API" subtitulo="EN → FR, DE | Cliente: DevTools" numeroPalabras="2,840"
         numeroTraductores="5" numeroDiasRestantes="2" estado="Revisión" tablero="Kanban" />
@@ -23,8 +20,23 @@ function App() {
       <SummaryCard numero="156" titulo="Tareas Pendientes" subtitulo="-8% esta semana" color="red" />
       <SummaryCard numero="89%" titulo="Progreso Promedio" subtitulo="+5% este mes" color="green" />
       <SummaryCard numero="12" titulo="Colaboradores" subtitulo="+2 nuevos" color="green" />
-    </>
-  )
+  </>
+);
+const Translations = () => <h2>Lista de Traducciones</h2>;
+const Progress = () => <h2>Progreso del Equipo</h2>;
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/translations" element={<Translations />} />
+          <Route path="/progress" element={<Progress />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
