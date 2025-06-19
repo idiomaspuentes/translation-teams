@@ -1,0 +1,75 @@
+/* Reinicio básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+  }
+  
+  /* Contenedor general de toda la app */
+  .layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 100% de la altura de la ventana */
+    width: 100vw;
+  }
+  
+  /* Encabezado */
+  .layout-header {
+    background-color: #ffffff;
+    color: #0056b3;
+    font-size: 2em;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  /* Contenedor del contenido (menú + panel) */
+  .layout-main {
+    display: flex;
+    flex: 1; /* Toma todo el espacio restante debajo del encabezado */
+    overflow: hidden;
+  }
+  
+  /* Menú lateral */
+  .layout-sidebar {
+    width: 220px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    color: #cc0000;
+    overflow-y: auto;
+  }
+  
+  /* Estilos del menú */
+  .layout-sidebar ul {
+    list-style: none;
+  }
+  
+  .layout-sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .layout-sidebar a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .layout-sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Panel principal */
+  .layout-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 1px;
+    border: 1px solid #ddd;
+    color: #000000;
+    overflow-y: auto;
+  }
+  
