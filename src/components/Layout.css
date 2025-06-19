@@ -1,9 +1,4 @@
 /* Reinicio básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
-  }
   
   /* Contenedor general de toda la app */
   .layout-container {
