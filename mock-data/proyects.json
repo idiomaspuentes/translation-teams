@@ -1,0 +1,14 @@
+[
+  {
+    "proyect_id": 1,
+    "proyect_name": "Sistema de Inventario"
+  },
+  {
+    "proyect_id": 2,
+    "proyect_name": "Aplicación de Reservas"
+  },
+  {
+    "proyect_id": 3,
+    "proyect_name": "Panel de Control Administrativo"
+  }
+]

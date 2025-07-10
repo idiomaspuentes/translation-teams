@@ -1,0 +1,16 @@
+[
+  {
+    "repository_id": 101,
+    "proyect_id": 1,
+    "name": "inventario-core",
+    "description": "Lógica de negocios para el sistema de inventario.",
+    "owner_id": 1
+  },
+  {
+    "repository_id": 102,
+    "proyect_id": 2,
+    "name": "reservas-api",
+    "description": "Servicios REST para gestionar reservas.",
+    "owner_id": 2
+  }
+]
