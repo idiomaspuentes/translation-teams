@@ -6,7 +6,7 @@ const colorStatus = {
 export function ProjectCard({ porcentaje, titulo, subtitulo, numeroPalabras, numeroTraductores, numeroDiasRestantes, estado, tablero, entregado = false, }) {
     return (
 
-        <div className="  bg-white px-10 py-10 w-120 h-90 rounded-2xl m-10 p-4">
+        <div className="  bg-white px-10 py-10 w-120 h-90 rounded-2xl m-10 p-4 shadow-lg">
             <span className="flex justify-between">
                 <h2 className="text-xl font-medium">{titulo}</h2>
                 <a href="/estado" className={`inline-flex items-center ${colorStatus[estado]} font-medium   bg-green-200 rounded-full px-4 py-1`}> {estado}
