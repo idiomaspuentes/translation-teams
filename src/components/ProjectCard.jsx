@@ -15,7 +15,7 @@ export function ProjectCard({
   entregado = false,
 }) {
   return (
-    <div className="  bg-white px-10 py-10 w-120 h-90 rounded-2xl m-10 p-4 shadow-lg">
+    <div className="  bg-white px-10 w-full py-10 rounded-2xl p-4 shadow-lg">
       <span className="flex justify-between">
         <h2 className="text-xl font-medium">{titulo}</h2>
         <a
