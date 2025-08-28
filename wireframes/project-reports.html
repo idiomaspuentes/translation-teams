@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte del Proyecto - Gestión de Traducción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Layout Principal */
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 70px 1fr;
+            height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-selector {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 0;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0.5rem 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f1f5f9;
+            color: #3b82f6;
+            border-right: 3px solid #3b82f6;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            background: currentColor;
+            mask-size: contain;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header del Reporte */
+        .report-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .report-title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .report-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .report-subtitle {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .report-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+
+        .date-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+            font-size: 0.875rem;
+        }
+
+        .report-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        /* Métricas Principales */
+        .metrics-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric-card {
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem auto;
+        }
+
+        .icon-progress { background: #dbeafe; color: #3b82f6; }
+        .icon-time { background: #fef3c7; color: #d97706; }
+        .icon-quality { background: #dcfce7; color: #16a34a; }
+        .icon-team { background: #e0e7ff; color: #6366f1; }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-change {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .metric-change.positive {
+            color: #10b981;
+        }
+
+        .metric-change.negative {
+            color: #ef4444;
+        }
+
+        /* Gráficos */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .chart-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chart-option {
+            padding: 0.25rem 0.75rem;
+            background: #f1f5f9;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chart-option.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(45deg, #f8fafc 25%, transparent 25%),
+                        linear-gradient(-45deg, #f8fafc 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f8fafc 75%),
+                        linear-gradient(-45deg, transparent 75%, #f8fafc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-style: italic;
+            border: 2px dashed #e2e8f0;
+            text-align: center;
+        }
+
+        /* Progreso por Fase */
+        .phases-progress {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .phase-item:last-child {
+            border-bottom: none;
+        }
+
+        .phase-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .phase-icon.completed {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .phase-icon.active {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .phase-icon.pending {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .phase-info {
+            flex: 1;
+        }
+
+        .phase-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .phase-meta {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .phase-progress {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 150px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            min-width: 35px;
+        }
+
+        /* Rendimiento del Equipo */
+        .team-performance {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .team-member-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-member-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .member-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .member-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            min-width: 300px;
+        }
+
+        .member-stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #1e293b;
+            font-size: 0.875rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Timeline del Proyecto */
+        .timeline-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -24px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+            z-index: 1;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-description {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Tabla de Tareas */
+        .tasks-table {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .table-content {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .task-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-review {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-draft {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px auto 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            .main-content {
+                order: 3;
+                padding: 1rem;
+            }
+
+            .report-title-section {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .report-meta-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-stats {
+                grid-template-columns: 1fr;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">TranslationTeams</div>
+            <div class="user-menu">
+                <select class="lang-selector">
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                </select>
+                <div class="user-avatar">JD</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kanban.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Tablero Kanban
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link active">
+                            <div class="nav-icon"></div>
+                            Proyectos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teams.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Equipos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Reportes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Configuración
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="projects.html">Proyectos</a>
+                <span>›</span>
+                <a href="project-detail.html?id=1">Manual de Usuario - App Mobile</a>
+                <span>›</span>
+                <span>Reporte del Proyecto</span>
+            </nav>
+
+            <!-- Header del Reporte -->
+            <div class="report-header">
+                <div class="report-title-section">
+                    <div>
+                        <h1 class="report-title">Reporte del Proyecto</h1>
+                        <p class="report-subtitle">Manual de Usuario - App Mobile • Análisis de Progreso y Rendimiento</p>
+                    </div>
+                    <div class="report-actions">
+                        <div class="date-range">
+                            <span>📅</span>
+                            <span>15 Nov - 30 Nov 2024</span>
+                            <span>▼</span>
+                        </div>
+                        <button class="btn btn-outline">Exportar PDF</button>
+                        <button class="btn btn-primary">Programar Envío</button>
+                    </div>
+                </div>
+
+                <div class="report-meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Estado del Proyecto</span>
+                        <span class="meta-value" style="color: #f59e0b;">En Progreso</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Progreso General</span>
+                        <span class="meta-value">75%</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Días Transcurridos</span>
+                        <span class="meta-value">10 de 15 días</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Presupuesto Utilizado</span>
+                        <span class="meta-value">€1,875 de €2,500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Métricas Principales -->
+            <div class="metrics-section">
+                <h2 class="section-title">Métricas Principales</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon icon-progress">📊</div>
+                        <div class="metric-value">75%</div>
+                        <div class="metric-label">Progreso Completado</div>
+                        <div class="metric-change positive">
+                            <span>↗</span>
+                            <span>+15% esta semana</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon icon-time">⏱️</div>
+                        <div class="metric-value">42h</div>
+                        <div class="metric-label">Tiempo Invertido</div>
+                        <div class="metric-change positive">
+                            <span>↗</span>
+                            <span>84% del estimado</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon icon-quality">✅</div>
+                        <div class="metric-value">98.2%</div>
+                        <div class="metric-label">Índice de Calidad</div>
+                        <div class="metric-change positive">
+                            <span>↗</span>
+                            <span>+2.1% vs promedio</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon icon-team">👥</div>
+                        <div class="metric-value">4</div>
+                        <div class="metric-label">Miembros Activos</div>
+                        <div class="metric-change">
+                            <span>→</span>
+                            <span>100% participación</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Progreso Diario</h3>
+                        <div class="chart-options">
+                            <button class="chart-option active">Palabras</button>
+                            <button class="chart-option">Tareas</button>
+                            <button class="chart-option">Horas</button>
+                        </div>
+                    </div>
+                    <div class="chart-placeholder">
+                        Gráfico de líneas - Progreso diario del proyecto
+                        <br><small>Integración con Recharts en implementación real</small>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Distribución de Trabajo</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        Gráfico circular - Distribución por tipo de tarea
+                        <br><small>Traducción: 60%<br/>Revisión: 25%<br/>QA: 15%</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progreso por Fase -->
+            <div class="phases-progress">
+                <h3 class="section-title">Progreso por Fase</h3>
+                <div class="phase-item">
+                    <div class="phase-icon completed">✓</div>
+                    <div class="phase-info">
+                        <div class="phase-name">Preparación</div>
+                        <div class="phase-meta">Análisis, glosario y configuración inicial</div>
+                    </div>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">100%</span>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-icon active">⚡</div>
+                    <div class="phase-info">
+                        <div class="phase-name">Traducción</div>
+                        <div class="phase-meta">Traducción del contenido principal</div>
+                    </div>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                        <span class="progress-text">85%</span>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-icon active">📝</div>
+                    <div class="phase-info">
+                        <div class="phase-name">Revisión</div>
+                        <div class="phase-meta">Revisión linguística y correcciones</div>
+                    </div>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="progress-text">60%</span>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-icon pending">⏳</div>
+                    <div class="phase-info">
+                        <div class="phase-name">Control de Calidad</div>
+                        <div class="phase-meta">QA final y verificación de formato</div>
+                    </div>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 25%"></div>
+                        </div>
+                        <span class="progress-text">25%</span>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-icon pending">📤</div>
+                    <div class="phase-info">
+                        <div class="phase-name">Entrega</div>
+                        <div class="phase-meta">Preparación y entrega final</div>
+                    </div>
+                    <div class="phase-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rendimiento del Equipo -->
+            <div class="team-performance">
+                <h3 class="section-title">Rendimiento del Equipo</h3>
+                <div class="team-member-item">
+                    <div class="member-avatar">MG</div>
+                    <div class="member-info">
+                        <div class="member-name">María García</div>
+                        <div class="member-role">Traductora Principal</div>
+                    </div>
+                    <div class="member-stats">
+                        <div class="member-stat">
+                            <div class="stat-value">420</div>
+                            <div class="stat-label">Palabras</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">18h</div>
+                            <div class="stat-label">Tiempo</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">98.5%</div>
+                            <div class="stat-label">Calidad</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member-item">
+                    <div class="member-avatar">JL</div>
+                    <div class="member-info">
+                        <div class="member-name">Juan López</div>
+                        <div class="member-role">Traductor</div>
+                    </div>
+                    <div class="member-stats">
+                        <div class="member-stat">
+                            <div class="stat-value">280</div>
+                            <div class="stat-label">Palabras</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">12h</div>
+                            <div class="stat-label">Tiempo</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">97.2%</div>
+                            <div class="stat-label">Calidad</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member-item">
+                    <div class="member-avatar">CR</div>
+                    <div class="member-info">
+                        <div class="member-name">Carlos Ruiz</div>
+                        <div class="member-role">Revisor</div>
+                    </div>
+                    <div class="member-stats">
+                        <div class="member-stat">
+                            <div class="stat-value">180</div>
+                            <div class="stat-label">Palabras</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">8h</div>
+                            <div class="stat-label">Tiempo</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">99.1%</div>
+                            <div class="stat-label">Calidad</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member-item">
+                    <div class="member-avatar">LS</div>
+                    <div class="member-info">
+                        <div class="member-name">Laura Silva</div>
+                        <div class="member-role">Control de Calidad</div>
+                    </div>
+                    <div class="member-stats">
+                        <div class="member-stat">
+                            <div class="stat-value">58</div>
+                            <div class="stat-label">Palabras</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">4h</div>
+                            <div class="stat-label">Tiempo</div>
+                        </div>
+                        <div class="member-stat">
+                            <div class="stat-value">99.8%</div>
+                            <div class="stat-label">Calidad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline del Proyecto -->
+            <div class="timeline-section">
+                <h3 class="section-title">Timeline del Proyecto</h3>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Proyecto Iniciado</div>
+                        <div class="timeline-description">Se creó el proyecto y se asignó el equipo inicial</div>
+                        <div class="timeline-date">15 Noviembre 2024</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">📚</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Glosario Completado</div>
+                        <div class="timeline-description">Se finalizó el glosario terminológico del proyecto</div>
+                        <div class="timeline-date">16 Noviembre 2024</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">✍️</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Traducción Iniciada</div>
+                        <div class="timeline-description">Comenzó la fase de traducción del contenido principal</div>
+                        <div class="timeline-date">17 Noviembre 2024</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">📝</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Primera Revisión</div>
+                        <div class="timeline-description">Se completó la revisión del primer capítulo</div>
+                        <div class="timeline-date">22 Noviembre 2024</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">⏰</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Hito del 75%</div>
+                        <div class="timeline-description">El proyecto alcanzó el 75% de completitud</div>
+                        <div class="timeline-date">25 Noviembre 2024 (Hoy)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Estado de Tareas -->
+            <div class="tasks-table">
+                <div class="table-header">
+                    <h3 class="table-title">Estado Detallado de Tareas</h3>
+                    <button class="btn btn-outline">Exportar Lista</button>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tarea</th>
+                                <th>Asignado</th>
+                                <th>Estado</th>
+                                <th>Progreso</th>
+                                <th>Palabras</th>
+                                <th>Tiempo</th>
+                                <th>Vencimiento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-001 • Traducir Capítulo 1: Introducción</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Traducción</div>
+                                    </div>
+                                </td>
+                                <td>María García</td>
+                                <td><span class="task-status status-completed">Completado</span></td>
+                                <td>100%</td>
+                                <td>250</td>
+                                <td>6h</td>
+                                <td>Completado</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-002 • Traducir Capítulo 2: Instalación</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Traducción</div>
+                                    </div>
+                                </td>
+                                <td>María García</td>
+                                <td><span class="task-status status-progress">En progreso</span></td>
+                                <td>65%</td>
+                                <td>320</td>
+                                <td>2.6h</td>
+                                <td style="color: #dc2626; font-weight: 500;">Hoy</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-005 • Revisar Capítulo 1: Introducción</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Revisión</div>
+                                    </div>
+                                </td>
+                                <td>Carlos Ruiz</td>
+                                <td><span class="task-status status-review">Revisión</span></td>
+                                <td>80%</td>
+                                <td>250</td>
+                                <td>3h</td>
+                                <td>Hoy</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-003 • Traducir Capítulo 3: Configuración</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Traducción</div>
+                                    </div>
+                                </td>
+                                <td>Juan López</td>
+                                <td><span class="task-status status-draft">Borrador</span></td>
+                                <td>0%</td>
+                                <td>480</td>
+                                <td>0h</td>
+                                <td>Mañana</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-007 • Localizar Screenshots de UI</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Localización</div>
+                                    </div>
+                                </td>
+                                <td>Juan López</td>
+                                <td><span class="task-status status-progress">En progreso</span></td>
+                                <td>40%</td>
+                                <td>-</td>
+                                <td>5h</td>
+                                <td>5 días</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

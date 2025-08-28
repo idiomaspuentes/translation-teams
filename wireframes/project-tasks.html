@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas del Proyecto - Gestión de Traducción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Layout Principal */
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 70px 1fr;
+            height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-selector {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 0;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0.5rem 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f1f5f9;
+            color: #3b82f6;
+            border-right: 3px solid #3b82f6;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            background: currentColor;
+            mask-size: contain;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header de la Página */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .page-subtitle {
+            color: #64748b;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+
+        /* Filtros y Controles */
+        .controls-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: white;
+            min-width: 120px;
+        }
+
+        .view-toggle {
+            display: flex;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Vista Jerárquica */
+        .tasks-hierarchy {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            overflow: hidden;
+        }
+
+        .task-group {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .task-group:last-child {
+            border-bottom: none;
+        }
+
+        .task-group-header {
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .task-group-header:hover {
+            background: #f1f5f9;
+        }
+
+        .group-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .group-toggle {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.25rem;
+            background: #e2e8f0;
+            color: #64748b;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .group-toggle.expanded {
+            background: #3b82f6;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .group-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .group-meta {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .group-stats {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .group-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .group-progress {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-bar-small {
+            width: 80px;
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill-small {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #64748b;
+            min-width: 30px;
+        }
+
+        /* Lista de Tareas */
+        .tasks-list {
+            display: none;
+        }
+
+        .tasks-list.expanded {
+            display: block;
+        }
+
+        .task-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .task-item:hover {
+            background: #f8fafc;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .task-checkbox.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .task-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .task-title {
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        .task-title.completed {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .task-id {
+            font-weight: 500;
+        }
+
+        .task-assignee {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .assignee-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.625rem;
+            font-weight: bold;
+        }
+
+        .task-priority {
+            padding: 0.125rem 0.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.625rem;
+            font-weight: 500;
+        }
+
+        .priority-high {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .priority-medium {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+
+        .priority-low {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .task-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-draft {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-review {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .task-due {
+            font-size: 0.75rem;
+            color: #64748b;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .task-due.overdue {
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .task-item:hover .task-actions {
+            opacity: 1;
+        }
+
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* Subtareas */
+        .subtasks-list {
+            margin-left: 2rem;
+            border-left: 2px solid #e2e8f0;
+            display: none;
+        }
+
+        .subtasks-list.expanded {
+            display: block;
+        }
+
+        .subtask-item {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #fafbfc;
+        }
+
+        .subtask-item:last-child {
+            border-bottom: none;
+        }
+
+        .subtask-checkbox {
+            width: 14px;
+            height: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .subtask-checkbox.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .subtask-title {
+            flex: 1;
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .subtask-title.completed {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .subtask-assignee {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Vista de Lista Plana */
+        .tasks-table {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            overflow: hidden;
+            display: none;
+        }
+
+        .tasks-table.active {
+            display: block;
+        }
+
+        .table-content {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px auto 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            .main-content {
+                order: 3;
+                padding: 1rem;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .search-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .group-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">TranslationTeams</div>
+            <div class="user-menu">
+                <select class="lang-selector">
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                </select>
+                <div class="user-avatar">JD</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kanban.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Tablero Kanban
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link active">
+                            <div class="nav-icon"></div>
+                            Proyectos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teams.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Equipos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Reportes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Configuración
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="projects.html">Proyectos</a>
+                <span>›</span>
+                <a href="project-detail.html?id=1">Manual de Usuario - App Mobile</a>
+                <span>›</span>
+                <span>Tareas</span>
+            </nav>
+
+            <!-- Header de la Página -->
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Tareas del Proyecto</h1>
+                    <p class="page-subtitle">Manual de Usuario - App Mobile • 12 tareas • 38 subtareas</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline">Exportar</button>
+                    <button class="btn btn-primary">+ Nueva Tarea</button>
+                </div>
+            </div>
+
+            <!-- Controles y Filtros -->
+            <div class="controls-section">
+                <div class="controls-grid">
+                    <div class="search-filters">
+                        <input type="text" class="search-box" placeholder="Buscar tareas...">
+                        <select class="filter-select">
+                            <option>Todos los estados</option>
+                            <option>Borrador</option>
+                            <option>En progreso</option>
+                            <option>Revisión</option>
+                            <option>Completado</option>
+                        </select>
+                        <select class="filter-select">
+                            <option>Todos los asignados</option>
+                            <option>María García</option>
+                            <option>Juan López</option>
+                            <option>Carlos Ruiz</option>
+                            <option>Laura Silva</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="toggleView('hierarchy')">🌳</button>
+                        <button class="view-btn" onclick="toggleView('table')">📋</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista Jerárquica -->
+            <div class="tasks-hierarchy" id="hierarchy-view">
+                <!-- Grupo: Traducción -->
+                <div class="task-group">
+                    <div class="task-group-header" onclick="toggleGroup('translation')">
+                        <div class="group-info">
+                            <div class="group-toggle expanded" id="toggle-translation">▶</div>
+                            <div>
+                                <div class="group-title">Traducción</div>
+                                <div class="group-meta">Contenido principal del manual</div>
+                            </div>
+                        </div>
+                        <div class="group-stats">
+                            <div class="group-stat">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Tareas</div>
+                            </div>
+                            <div class="group-stat">
+                                <div class="stat-number">18</div>
+                                <div class="stat-label">Subtareas</div>
+                            </div>
+                            <div class="group-progress">
+                                <div class="progress-bar-small">
+                                    <div class="progress-fill-small" style="width: 75%"></div>
+                                </div>
+                                <span class="progress-text">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasks-list expanded" id="tasks-translation">
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=1'">
+                            <div class="task-checkbox completed">✓</div>
+                            <div class="task-info">
+                                <div class="task-title completed">Traducir Capítulo 1: Introducción</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-001</span>
+                                    <span>•</span>
+                                    <span>250 palabras</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">MG</div>
+                                        <span>María García</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-high">Alta</div>
+                            <div class="task-status status-completed">Completado</div>
+                            <div class="task-due">Completado</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=2'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Traducir Capítulo 2: Instalación</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-002</span>
+                                    <span>•</span>
+                                    <span>320 palabras</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">MG</div>
+                                        <span>María García</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-high">Alta</div>
+                            <div class="task-status status-progress">En progreso</div>
+                            <div class="task-due">Hoy</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                                <button class="btn btn-small btn-primary">Editar</button>
+                            </div>
+                        </div>
+                        <div class="subtasks-list expanded">
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox completed">✓</div>
+                                <div class="subtask-title completed">Traducir sección "Requisitos del sistema"</div>
+                                <div class="subtask-assignee">María García</div>
+                            </div>
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox">□</div>
+                                <div class="subtask-title">Traducir sección "Proceso de instalación"</div>
+                                <div class="subtask-assignee">María García</div>
+                            </div>
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox">□</div>
+                                <div class="subtask-title">Traducir sección "Configuración inicial"</div>
+                                <div class="subtask-assignee">María García</div>
+                            </div>
+                        </div>
+
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=3'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Traducir Capítulo 3: Configuración Avanzada</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-003</span>
+                                    <span>•</span>
+                                    <span>480 palabras</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">JL</div>
+                                        <span>Juan López</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-medium">Media</div>
+                            <div class="task-status status-draft">Borrador</div>
+                            <div class="task-due">Mañana</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                                <button class="btn btn-small btn-primary">Iniciar</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=4'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Traducir FAQ - Preguntas Frecuentes</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-004</span>
+                                    <span>•</span>
+                                    <span>200 palabras</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">JL</div>
+                                        <span>Juan López</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-low">Baja</div>
+                            <div class="task-status status-draft">Borrador</div>
+                            <div class="task-due">3 días</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grupo: Revisión -->
+                <div class="task-group">
+                    <div class="task-group-header" onclick="toggleGroup('review')">
+                        <div class="group-info">
+                            <div class="group-toggle" id="toggle-review">▶</div>
+                            <div>
+                                <div class="group-title">Revisión</div>
+                                <div class="group-meta">Control de calidad y correcciones</div>
+                            </div>
+                        </div>
+                        <div class="group-stats">
+                            <div class="group-stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Tareas</div>
+                            </div>
+                            <div class="group-stat">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Subtareas</div>
+                            </div>
+                            <div class="group-progress">
+                                <div class="progress-bar-small">
+                                    <div class="progress-fill-small" style="width: 40%"></div>
+                                </div>
+                                <span class="progress-text">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasks-list" id="tasks-review">
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=5'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Revisar Capítulo 1: Introducción</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-005</span>
+                                    <span>•</span>
+                                    <span>Revisión linguística</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">CR</div>
+                                        <span>Carlos Ruiz</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-high">Alta</div>
+                            <div class="task-status status-review">Revisión</div>
+                            <div class="task-due">Hoy</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=6'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Control de Calidad - Terminología</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-006</span>
+                                    <span>•</span>
+                                    <span>Verificación glosario</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">LS</div>
+                                        <span>Laura Silva</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-medium">Media</div>
+                            <div class="task-status status-draft">Borrador</div>
+                            <div class="task-due">2 días</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grupo: Localización -->
+                <div class="task-group">
+                    <div class="task-group-header" onclick="toggleGroup('localization')">
+                        <div class="group-info">
+                            <div class="group-toggle" id="toggle-localization">▶</div>
+                            <div>
+                                <div class="group-title">Localización</div>
+                                <div class="group-meta">Adaptación cultural y elementos visuales</div>
+                            </div>
+                        </div>
+                        <div class="group-stats">
+                            <div class="group-stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Tareas</div>
+                            </div>
+                            <div class="group-stat">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Subtareas</div>
+                            </div>
+                            <div class="group-progress">
+                                <div class="progress-bar-small">
+                                    <div class="progress-fill-small" style="width: 25%"></div>
+                                </div>
+                                <span class="progress-text">25%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasks-list" id="tasks-localization">
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=7'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Localizar Screenshots de UI</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-007</span>
+                                    <span>•</span>
+                                    <span>24 imágenes</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">JL</div>
+                                        <span>Juan López</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-medium">Media</div>
+                            <div class="task-status status-progress">En progreso</div>
+                            <div class="task-due">5 días</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item" onclick="window.location.href='task-detail.html?id=8'">
+                            <div class="task-checkbox">□</div>
+                            <div class="task-info">
+                                <div class="task-title">Adaptar Formatos y Medidas</div>
+                                <div class="task-meta">
+                                    <span class="task-id">#TT-008</span>
+                                    <span>•</span>
+                                    <span>Unidades métricas</span>
+                                    <span>•</span>
+                                    <div class="task-assignee">
+                                        <div class="assignee-avatar">MG</div>
+                                        <span>María García</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-priority priority-low">Baja</div>
+                            <div class="task-status status-draft">Borrador</div>
+                            <div class="task-due">1 semana</div>
+                            <div class="task-actions">
+                                <button class="btn btn-small btn-outline">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Tabla -->
+            <div class="tasks-table" id="table-view">
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tarea</th>
+                                <th>Asignado</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                                <th>Progreso</th>
+                                <th>Vencimiento</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr onclick="window.location.href='task-detail.html?id=1'">
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-001 • Traducir Capítulo 1: Introducción</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">250 palabras • Traducción</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <div class="assignee-avatar">MG</div>
+                                        <span>María García</span>
+                                    </div>
+                                </td>
+                                <td><span class="task-status status-completed">Completado</span></td>
+                                <td><span class="task-priority priority-high">Alta</span></td>
+                                <td>100%</td>
+                                <td>Completado</td>
+                                <td>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr onclick="window.location.href='task-detail.html?id=2'">
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-002 • Traducir Capítulo 2: Instalación</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">320 palabras • Traducción</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <div class="assignee-avatar">MG</div>
+                                        <span>María García</span>
+                                    </div>
+                                </td>
+                                <td><span class="task-status status-progress">En progreso</span></td>
+                                <td><span class="task-priority priority-high">Alta</span></td>
+                                <td>65%</td>
+                                <td style="color: #dc2626; font-weight: 500;">Hoy</td>
+                                <td>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                        <button class="btn btn-small btn-primary">Editar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr onclick="window.location.href='task-detail.html?id=5'">
+                                <td>
+                                    <div>
+                                        <div style="font-weight: 500;">#TT-005 • Revisar Capítulo 1: Introducción</div>
+                                        <div style="font-size: 0.75rem; color: #64748b;">Revisión linguística • Revisión</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <div class="assignee-avatar">CR</div>
+                                        <span>Carlos Ruiz</span>
+                                    </div>
+                                </td>
+                                <td><span class="task-status status-review">Revisión</span></td>
+                                <td><span class="task-priority priority-high">Alta</span></td>
+                                <td>80%</td>
+                                <td style="color: #dc2626; font-weight: 500;">Hoy</td>
+                                <td>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        <button class="btn btn-small btn-outline">Ver</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleGroup(groupId) {
+            const tasksList = document.getElementById(`tasks-${groupId}`);
+            const toggle = document.getElementById(`toggle-${groupId}`);
+            
+            if (tasksList.classList.contains('expanded')) {
+                tasksList.classList.remove('expanded');
+                toggle.classList.remove('expanded');
+            } else {
+                tasksList.classList.add('expanded');
+                toggle.classList.add('expanded');
+            }
+        }
+
+        function toggleView(view) {
+            const hierarchyView = document.getElementById('hierarchy-view');
+            const tableView = document.getElementById('table-view');
+            const viewBtns = document.querySelectorAll('.view-btn');
+            
+            viewBtns.forEach(btn => btn.classList.remove('active'));
+            
+            if (view === 'hierarchy') {
+                hierarchyView.style.display = 'block';
+                tableView.classList.remove('active');
+                document.querySelector('.view-btn:first-child').classList.add('active');
+            } else {
+                hierarchyView.style.display = 'none';
+                tableView.classList.add('active');
+                document.querySelector('.view-btn:last-child').classList.add('active');
+            }
+        }
+
+        // Inicializar con el primer grupo expandido
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleGroup('translation');
+        });
+    </script>
+</body>
+</html>
