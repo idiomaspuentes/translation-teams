@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Tarea - Gestión de Traducción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Layout Principal */
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 70px 1fr;
+            height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .lang-selector {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            background: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 0;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0.5rem 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f1f5f9;
+            color: #3b82f6;
+            border-right: 3px solid #3b82f6;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            background: currentColor;
+            mask-size: contain;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .breadcrumb a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header de la Tarea */
+        .task-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .task-title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .task-id {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .task-subtitle {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #d1d5db;
+            color: #374151;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .task-status {
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-draft {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-progress {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-review {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .task-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .assignee-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .assignee-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .priority-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .priority-high {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .priority-medium {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+
+        .priority-low {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        /* Layout de Dos Columnas */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Información de la Tarea */
+        .task-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .task-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .info-section {
+            margin-bottom: 2rem;
+        }
+
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .info-value {
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        /* Progreso de la Tarea */
+        .progress-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-percentage {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .progress-bar-large {
+            width: 100%;
+            height: 12px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill-large {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.3s ease;
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .progress-stat {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        /* Subtareas */
+        .subtasks-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .subtasks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .subtasks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .subtask-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .subtask-item:hover {
+            background: #f1f5f9;
+        }
+
+        .subtask-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .subtask-checkbox.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .subtask-info {
+            flex: 1;
+        }
+
+        .subtask-title {
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtask-title.completed {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .subtask-meta {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .subtask-assignee {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .subtask-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.625rem;
+            font-weight: bold;
+        }
+
+        /* Archivos y Recursos */
+        .files-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+            margin-bottom: 2rem;
+        }
+
+        .files-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .file-item:hover {
+            background: #f1f5f9;
+        }
+
+        .file-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .file-meta {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        /* Comentarios */
+        .comments-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex: 1;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .comment-time {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .comment-text {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Timeline de Actividad */
+        .activity-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9;
+        }
+
+        .activity-timeline {
+            position: relative;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .activity-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .activity-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -24px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .activity-item:last-child::before {
+            display: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .activity-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-description {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px auto 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: flex;
+                gap: 1rem;
+                overflow-x: auto;
+            }
+
+            .nav-item {
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            .main-content {
+                order: 3;
+                padding: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .task-title-section {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .task-meta-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .progress-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">TranslationTeams</div>
+            <div class="user-menu">
+                <select class="lang-selector">
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="fr">🇫🇷 Français</option>
+                </select>
+                <div class="user-avatar">JD</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="kanban.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Tablero Kanban
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link active">
+                            <div class="nav-icon"></div>
+                            Proyectos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teams.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Equipos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Reportes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html" class="nav-link">
+                            <div class="nav-icon"></div>
+                            Configuración
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="projects.html">Proyectos</a>
+                <span>›</span>
+                <a href="project-detail.html?id=1">Manual de Usuario - App Mobile</a>
+                <span>›</span>
+                <a href="project-tasks.html?id=1">Tareas</a>
+                <span>›</span>
+                <span>Traducir Capítulo 2: Instalación</span>
+            </nav>
+
+            <!-- Header de la Tarea -->
+            <div class="task-header">
+                <div class="task-title-section">
+                    <div>
+                        <div class="task-id">#TT-002</div>
+                        <h1 class="task-title">Traducir Capítulo 2: Instalación</h1>
+                        <p class="task-subtitle">Manual de Usuario - App Mobile • Traducción ES → EN</p>
+                    </div>
+                    <div class="task-actions">
+                        <span class="task-status status-progress">En Progreso</span>
+                        <button class="btn btn-outline">Editar</button>
+                        <button class="btn btn-warning">Pausar</button>
+                        <button class="btn btn-success">Marcar Completada</button>
+                    </div>
+                </div>
+
+                <div class="task-meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Asignado a</span>
+                        <div class="meta-value">
+                            <div class="assignee-info">
+                                <div class="assignee-avatar">MG</div>
+                                <span>María García</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Prioridad</span>
+                        <div class="meta-value">
+                            <span class="priority-badge priority-high">Alta</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Fecha de Vencimiento</span>
+                        <span class="meta-value" style="color: #dc2626;">Hoy - 23:59</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Palabras Estimadas</span>
+                        <span class="meta-value">320 palabras</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tiempo Estimado</span>
+                        <span class="meta-value">4 horas</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Categoría</span>
+                        <span class="meta-value">Traducción</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progreso de la Tarea -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <h2 class="section-title">Progreso de la Tarea</h2>
+                    <div class="progress-percentage">65%</div>
+                </div>
+
+                <div class="progress-bar-large">
+                    <div class="progress-fill-large" style="width: 65%"></div>
+                </div>
+
+                <div class="progress-stats">
+                    <div class="progress-stat">
+                        <div class="stat-number">208</div>
+                        <div class="stat-label">Palabras Traducidas</div>
+                    </div>
+                    <div class="progress-stat">
+                        <div class="stat-number">112</div>
+                        <div class="stat-label">Palabras Restantes</div>
+                    </div>
+                    <div class="progress-stat">
+                        <div class="stat-number">2.6h</div>
+                        <div class="stat-label">Tiempo Invertido</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layout de Dos Columnas -->
+            <div class="content-grid">
+                <!-- Columna Principal -->
+                <div>
+                    <!-- Información de la Tarea -->
+                    <div class="task-info">
+                        <h3 class="section-title">Descripción de la Tarea</h3>
+                        <p class="task-description">
+                            Traducir el Capítulo 2 del manual de usuario que cubre el proceso completo de instalación 
+                            de la aplicación móvil. Este capítulo incluye los requisitos del sistema, el proceso paso 
+                            a paso de instalación, y la configuración inicial básica. Es importante mantener la 
+                            consistencia terminológica con el glosario del proyecto y asegurar que las instrucciones 
+                            sean claras y precisas para usuarios no técnicos.
+                        </p>
+
+                        <div class="info-section">
+                            <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Especificaciones</h4>
+                            <ul class="info-list">
+                                <li>
+                                    <span class="info-label">Idioma Origen</span>
+                                    <span class="info-value">Español</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Idioma Destino</span>
+                                    <span class="info-value">Inglés (US)</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Tipo de Contenido</span>
+                                    <span class="info-value">Instrucciones Técnicas</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Tono Requerido</span>
+                                    <span class="info-value">Profesional y Accesible</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Herramienta CAT</span>
+                                    <span class="info-value">Trados Studio 2024</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Memoria de Traducción</span>
+                                    <span class="info-value">TechCorp_Mobile_ES-EN.tmx</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="info-section">
+                            <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 1rem;">Instrucciones Especiales</h4>
+                            <ul class="info-list">
+                                <li>
+                                    <span class="info-label">Glosario</span>
+                                    <span class="info-value">Usar terminología del glosario del proyecto</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Screenshots</span>
+                                    <span class="info-value">Actualizar referencias a capturas localizadas</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Formato</span>
+                                    <span class="info-value">Mantener formato y estructura original</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Revisión</span>
+                                    <span class="info-value">Auto-revisión antes de marcar como completada</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Subtareas -->
+                    <div class="subtasks-section">
+                        <div class="subtasks-header">
+                            <h3 class="section-title">Subtareas (3 de 3)</h3>
+                            <button class="btn btn-outline btn-small">+ Agregar Subtarea</button>
+                        </div>
+                        <div class="subtasks-list">
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox completed">✓</div>
+                                <div class="subtask-info">
+                                    <div class="subtask-title completed">Traducir sección "Requisitos del sistema"</div>
+                                    <div class="subtask-meta">85 palabras • Completado hace 2 horas</div>
+                                </div>
+                                <div class="subtask-assignee">
+                                    <div class="subtask-avatar">MG</div>
+                                    <span>María García</span>
+                                </div>
+                            </div>
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox">□</div>
+                                <div class="subtask-info">
+                                    <div class="subtask-title">Traducir sección "Proceso de instalación"</div>
+                                    <div class="subtask-meta">180 palabras • En progreso</div>
+                                </div>
+                                <div class="subtask-assignee">
+                                    <div class="subtask-avatar">MG</div>
+                                    <span>María García</span>
+                                </div>
+                            </div>
+                            <div class="subtask-item">
+                                <div class="subtask-checkbox">□</div>
+                                <div class="subtask-info">
+                                    <div class="subtask-title">Traducir sección "Configuración inicial"</div>
+                                    <div class="subtask-meta">55 palabras • Pendiente</div>
+                                </div>
+                                <div class="subtask-assignee">
+                                    <div class="subtask-avatar">MG</div>
+                                    <span>María García</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comentarios -->
+                    <div class="comments-section">
+                        <h3 class="section-title">Comentarios y Notas</h3>
+                        <div class="comments-list">
+                            <div class="comment-item">
+                                <div class="comment-avatar">MG</div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">María García</span>
+                                        <span class="comment-time">Hace 1 hora</span>
+                                    </div>
+                                    <div class="comment-text">
+                                        He completado la primera sección. Encontré algunos términos técnicos que no están 
+                                        en el glosario, los he marcado para revisión. ¿Podríamos actualizar el glosario 
+                                        con estos términos?
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment-avatar">CR</div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Carlos Ruiz</span>
+                                        <span class="comment-time">Hace 3 horas</span>
+                                    </div>
+                                    <div class="comment-text">
+                                        Recuerda que para las capturas de pantalla, debemos usar las versiones localizadas 
+                                        que están en la carpeta "Screenshots_Localized". Las referencias deben coincidir 
+                                        exactamente.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <textarea class="comment-input" placeholder="Agregar un comentario..."></textarea>
+                            <button class="btn btn-primary">Comentar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Lateral -->
+                <div>
+                    <!-- Archivos y Recursos -->
+                    <div class="files-section">
+                        <h3 class="section-title">Archivos y Recursos</h3>
+                        <div class="files-list">
+                            <div class="file-item">
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name">Capitulo_2_Original.docx</div>
+                                    <div class="file-meta">45 KB • Archivo fuente</div>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-small btn-outline">Descargar</button>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon">🎨</div>
+                                <div class="file-info">
+                                    <div class="file-name">Screenshots_Cap2_EN.zip</div>
+                                    <div class="file-meta">2.1 MB • Capturas localizadas</div>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-small btn-outline">Descargar</button>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon">📚</div>
+                                <div class="file-info">
+                                    <div class="file-name">Glosario_Terminologico.xlsx</div>
+                                    <div class="file-meta">156 KB • Referencia</div>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-small btn-outline">Abrir</button>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon">📝</div>
+                                <div class="file-info">
+                                    <div class="file-name">Capitulo_2_Progreso.docx</div>
+                                    <div class="file-meta">32 KB • Trabajo en progreso</div>
+                                </div>
+                                <div class="file-actions">
+                                    <button class="btn btn-small btn-primary">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <button class="btn btn-primary" style="width: 100%; justify-content: center;">Subir Archivo</button>
+                        </div>
+                    </div>
+
+                    <!-- Timeline de Actividad -->
+                    <div class="activity-section">
+                        <h3 class="section-title">Actividad Reciente</h3>
+                        <div class="activity-timeline">
+                            <div class="activity-item">
+                                <div class="activity-icon">✓</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Subtarea completada</div>
+                                    <div class="activity-description">María completó "Requisitos del sistema"</div>
+                                    <div class="activity-time">Hace 2 horas</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">💬</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Comentario añadido</div>
+                                    <div class="activity-description">María añadió una nota sobre terminología</div>
+                                    <div class="activity-time">Hace 1 hora</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">📤</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Archivo actualizado</div>
+                                    <div class="activity-description">Se subió la versión en progreso</div>
+                                    <div class="activity-time">Hace 30 minutos</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">⏰</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Tiempo registrado</div>
+                                    <div class="activity-description">2.6 horas de trabajo registradas</div>
+                                    <div class="activity-time">Hace 15 minutos</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🚀</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Tarea iniciada</div>
+                                    <div class="activity-description">María comenzó a trabajar en esta tarea</div>
+                                    <div class="activity-time">Ayer a las 14:30</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
