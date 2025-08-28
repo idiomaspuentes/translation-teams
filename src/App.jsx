@@ -3,6 +3,8 @@ import { ProjectCard } from './components/ProjectCard.jsx'
 import { SummaryCard } from './components/SummaryCard.jsx'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import Reportes from './pages/Reportes';
+import Kanban from './pages/Kanban';
 
 const Home = () => (
   <>
@@ -31,8 +33,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/translations" element={<Translations />} />
-          <Route path="/progress" element={<Progress />} />
+          <Route path="/reportes" element={<Reportes />} />
+          <Route path="/kanban" element={<Kanban />} />
         </Routes>
       </Layout>
     </BrowserRouter>

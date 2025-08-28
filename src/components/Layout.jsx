@@ -18,14 +18,14 @@ const Layout = ({ children }) => {
           <nav>
             <ul className="list-none">
               <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/">Dashboard</Link></li>
-              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/translations">Traducciones</Link></li>
-              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/progress">Progreso</Link></li>
+              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/reportes">Reportes</Link></li>
+              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/kanban">Kanban</Link></li>
             </ul>
           </nav>
         </aside>
 
         {/* Panel principal */}
-        <main className="p-5 bg-white m-px text-black overflow-y-auto flex-1 rounded-[10px] border-width-1 border-solid border-gray-300">
+        <main className="bg-white m-px text-black overflow-y-auto flex-1 rounded-[10px] border-width-1 border-solid border-gray-300">
           {children}
         </main>
       </div>
