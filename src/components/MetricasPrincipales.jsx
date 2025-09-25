@@ -9,7 +9,7 @@ export default function MetricasPrincipales({
   porcentajeMiembrosActivos,
 }) {
   return (
-    <div className="rounded-lg shadow-lg border-1 border-gray-200 p-8">
+    <div className="bg-white rounded-lg shadow-lg border-1 border-gray-200 p-8">
       <h1 className="font-medium text-xl mb-4">Métricas Principales</h1>
       <div className="grid grid-cols-4 gap-6 w-full">
         <div className="bg-gray-50 border border-gray-200 px-12 py-8 rounded-xl">
