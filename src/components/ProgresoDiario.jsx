@@ -1,6 +1,6 @@
 export default function ProgresoDiario({}) {
   return (
-    <div className="rounded-xl shadow-lg border-1 border-gray-200 m-28">
+    <div className="bg-white rounded-xl shadow-lg border-1 border-gray-200">
       <div className="px-12 py-8">
         <div className="flex justify-between space-y-6">
           <div>
