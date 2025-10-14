@@ -1,8 +1,7 @@
-import EstadoDetalladoDeTareas from "../components/EstadoDetalladoDeTareas";
-
+import EstadoTarea from "../components/EstadoTarea";
 export default {
-  title: "Estado detallado de tareas",
-  component: EstadoDetalladoDeTareas,
+  title: "Ejemplo de Tabla de rendimiento de Traductor",
+  component: EstadoTarea,
 };
 
 const rendimientos = [
