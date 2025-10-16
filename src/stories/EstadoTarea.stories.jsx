@@ -1,6 +1,6 @@
 import EstadoTarea from "../components/EstadoTarea";
 export default {
-  title: "Ejemplo de Tabla de rendimiento de Traductor",
+  title: "Estado tarea",
   component: EstadoTarea,
 };
 
