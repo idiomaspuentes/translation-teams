@@ -12,16 +12,17 @@ const coloresStatus = {
 };
 
 export default function EstadoTarea({
-  nombre,
+  tarea,
   cantidadDeProyectos,
   palabrasPorMes,
   promedioCalidad,
-  diasPromedio,
   estado,
   indice,
+  tiempo,
+  vencimiento,
 }) {
   const color = colores[indice % colores.length];
-  const iniciales = nombre
+  const iniciales = tarea
     .split(" ")
     .map((n) => n[0])
     .join("");
@@ -35,7 +36,7 @@ export default function EstadoTarea({
           >
             {iniciales}
           </span>
-          <span className="block">{nombre}</span>
+          <span className="block">{tarea}</span>
         </span>
       </div>
       <span className="text-medium text-xl text-gray-700">
@@ -47,14 +48,13 @@ export default function EstadoTarea({
       <span className="text-medium text-xl text-gray-700">
         {promedioCalidad}
       </span>
-      <span className="text-medium text-xl text-gray-700">
-        {diasPromedio} días
-      </span>
       <span
         className={` text-md shadow-sm rounded-full text-center w-fit h-fit px-4 py-2 font-semibold ${coloresStatus[estado]}`}
       >
         {estado}
       </span>
+      <span className="text-medium text-xl text-gray-700">{tiempo}</span>
+      <span className="text-medium text-xl text-gray-700">{vencimiento}</span>
     </div>
   );
 }

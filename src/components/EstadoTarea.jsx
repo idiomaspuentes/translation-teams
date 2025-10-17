@@ -15,18 +15,27 @@ export default function EstadoTarea({ datos }) {
       <EncabezadoTarea />
       {datos.map(
         (
-          { nombre, proyectos, palabrasMes, promedioCalidad, promedio, estado },
+          {
+            tarea,
+            proyectos,
+            palabrasMes,
+            promedioCalidad,
+            estado,
+            tiempo,
+            vencimiento,
+          },
           index
         ) => {
           return (
             <FilaTarea
-              nombre={nombre}
+              tarea={tarea}
               cantidadDeProyectos={proyectos}
               palabrasPorMes={palabrasMes}
               promedioCalidad={promedioCalidad}
-              diasPromedio={promedio}
               indice={index}
               estado={estado}
+              tiempo={tiempo}
+              vencimiento={vencimiento}
             />
           );
         }
