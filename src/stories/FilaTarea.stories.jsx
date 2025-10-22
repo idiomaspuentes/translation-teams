@@ -6,11 +6,12 @@ export default {
 
 export const Ejemplo = {
   args: {
-    tarea: "María Fátima",
-    cantidadDeProyectos: 8,
-    palabrasPorMes: "15,240",
-    promedioCalidad: "98.2%",
-    estado: "Activo",
+    tarea: "#TT-001 • Traducir Capítulo 1: Introducción",
+    subtitulo: "Traducción",
+    asignado: "María García",
+    estado: "Completado",
+    progreso: "100%",
+    palabras: "250",
     tiempo: "6h",
     vencimiento: "Completado",
   },
