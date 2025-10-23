@@ -1,4 +1,6 @@
-import FiltrosReportes from '../components/FiltrosReportes'
+import FiltrosReportes from "../components/FiltrosReportes";
+import BotoneraReportes from "../components/BotoneraReportes";
+import ReportCard from "../components/ReportCard";
 
 function Reportes() {
   const filtroProyectos = [
@@ -25,8 +27,8 @@ function Reportes() {
     },
     {
       nombre: "Apocalipsis",
-    }
-  ]
+    },
+  ];
 
   const filtroClientes = [
     {
@@ -37,8 +39,8 @@ function Reportes() {
     },
     {
       nombre: "MarketingPro",
-    }
-  ]
+    },
+  ];
 
   const filtroIdiomas = [
     {
@@ -49,8 +51,8 @@ function Reportes() {
     },
     {
       nombre: "Francés - Alemán",
-    }
-  ]
+    },
+  ];
 
   const filtroTraductores = [
     {
@@ -67,24 +69,49 @@ function Reportes() {
     },
     {
       nombre: "Sofia Rodriguez",
-    }
-  ]
+    },
+  ];
   return (
     <>
-      <h2>Reportes y Analytics</h2>
+      <div className="flex justify-between">
+        <h2>Reportes y Analytics</h2>
+        <BotoneraReportes />
+      </div>
       <section>
         <FiltrosReportes
           filtros={{
             proyectos: filtroProyectos,
             clientes: filtroClientes,
             idiomas: filtroIdiomas,
-            traductores: filtroTraductores
+            traductores: filtroTraductores,
           }}
-          onChange={() => { }}
+          onChange={() => {}}
         />
+        <div className="flex w-full gap-8">
+          <ReportCard
+            numero={24}
+            tipo={"proyectos-completados"}
+            avance={"↗ +15% vs mes anterior"}
+          />
+          <ReportCard
+            numero={"125,430"}
+            tipo={"palabras-traducidas"}
+            avance={"↗ +8% vs mes anterior"}
+          />
+          <ReportCard
+            numero={"4.2"}
+            tipo={"dias-entrega"}
+            avance={"↘ -12% vs mes anterior"}
+          />
+          <ReportCard
+            numero={"96.8%"}
+            tipo={"indice-calidad"}
+            avance={"↗ +2% vs mes anterior"}
+          />
+        </div>
       </section>
     </>
-  )
+  );
 }
 
 export default Reportes;
