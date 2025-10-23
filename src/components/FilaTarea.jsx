@@ -1,8 +1,8 @@
 const coloresStatus = {
-  Completado: "text-green-800 bg-green-100",
-  "En progreso": "text-amber-800 bg-amber-100",
-  Revisión: "text-blue-800 bg-blue-200",
-  Borrador: "text-gray-600 bg-gray-300",
+  Completado: "text-green-700 bg-green-100",
+  "En progreso": "text-amber-700 bg-amber-100",
+  Revisión: "text-blue-700 bg-blue-100",
+  Borrador: "text-gray-700 bg-gray-100",
 };
 
 export default function EstadoTarea({
@@ -19,7 +19,7 @@ export default function EstadoTarea({
     <div className="grid grid-cols-9 px-6 gap-8 border-t-2 border-gray-100 py-4">
       <div className="flex flex-col col-span-3">
         <span className="font-medium">{tarea}</span>
-        <span className="text-medium text-sm text-gray-700">{subtitulo}</span>
+        <span className="text-medium text-sm text-gray-600">{subtitulo}</span>
       </div>
 
       <span className="text-medium text-md text-gray-700">{asignado}</span>

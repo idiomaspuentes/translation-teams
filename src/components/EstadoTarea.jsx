@@ -7,7 +7,7 @@ export default function EstadoTarea({ datos }) {
       <div className="flex justify-between items-baseline px-6 py-6 text-center p-6 rounded-lg">
         <h1 className="text-xl font-medium">Estado detallado de tareas</h1>
         <div className=" flex gap-4">
-          <span className="font-medium text-gray-600 bg-white shadow-sm rounded-lg px-7 py-3 border border-gray-300 hover:bg-gray-200 cursor-pointer">
+          <span className="font-medium text-gray-600 bg-white shadow-sm rounded-lg px-7 py-3 border border-gray-300 hover:bg-gray-100 cursor-pointer">
             Exportar lista
           </span>
         </div>
