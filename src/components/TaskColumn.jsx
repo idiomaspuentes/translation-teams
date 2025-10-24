@@ -95,7 +95,7 @@ export default function TaskColumn() {
           <div className="px-4 py-6  rounded-[0.75rem_0.75rem_0_0] border-solid border-b-1 border-[#e2e8f0] flex justify-between items-center">
             <div className="font-semibold flex items-center gap-[0.5rem]">
               <div className={`w-2 h-2 bg-[#f59e0b] rounded-[50%]`}></div>
-              En Proceso
+              En Progreso
             </div>
             <span className="bg-[#e2e8f0] text-[#64748b] p-[0.25rem_0.5rem] rounded-[1rem] text-xs font-medium">
               3
