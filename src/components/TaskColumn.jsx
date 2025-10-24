@@ -76,6 +76,7 @@ export default function TaskColumn() {
                 <span>Vence: Hoy</span>
               </div>
             </div>
+            {/* fin - Tarjeta - tarea */}
 
             {/* Boton - agregar */}
             <a
