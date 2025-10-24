@@ -1,8 +1,44 @@
 import FiltrosReportes from "../components/FiltrosReportes";
 import BotoneraReportes from "../components/BotoneraReportes";
 import ReportCard from "../components/ReportCard";
+import GraficosProductividad from "../components/GraficosProductividad";
+import Tabla from "../components/Tabla";
 
 function Reportes() {
+  const rendimientoTraductores = [
+    {
+      nombre: "María García",
+      proyectos: 8,
+      palabrasMes: "15,240",
+      promedioCalidad: "98.2%",
+      promedio: "3.8 días",
+      estado: "Activo",
+    },
+    {
+      nombre: "Juan López",
+      proyectos: 6,
+      palabrasMes: "12,890",
+      promedioCalidad: "96.5%",
+      promedio: "4.2 días",
+      estado: "Activo",
+    },
+    {
+      nombre: "Carlos Ruiz",
+      proyectos: 5,
+      palabrasMes: "9,650",
+      promedioCalidad: "97.8%",
+      promedio: "3.5 días",
+      estado: "En proyecto",
+    },
+    {
+      nombre: "Laura Silva",
+      proyectos: 4,
+      palabrasMes: "8,420",
+      promedioCalidad: "99.1%",
+      promedio: "5.1 días",
+      estado: "Sobrecargado",
+    },
+  ];
   const filtroProyectos = [
     {
       nombre: "Ester",
@@ -109,6 +145,8 @@ function Reportes() {
             avance={"↗ +2% vs mes anterior"}
           />
         </div>
+        <GraficosProductividad />
+        <Tabla datos={rendimientoTraductores} />
       </section>
     </>
   );
