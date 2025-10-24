@@ -3,6 +3,7 @@ import BotoneraReportes from "../components/BotoneraReportes";
 import ReportCard from "../components/ReportCard";
 import GraficosProductividad from "../components/GraficosProductividad";
 import Tabla from "../components/Tabla";
+import ProgresoDeProyectos from "../components/ProgresoDeProyectos";
 
 function Reportes() {
   const rendimientoTraductores = [
@@ -146,6 +147,7 @@ function Reportes() {
           />
         </div>
         <GraficosProductividad />
+        <ProgresoDeProyectos />
         <Tabla datos={rendimientoTraductores} />
       </section>
     </>
