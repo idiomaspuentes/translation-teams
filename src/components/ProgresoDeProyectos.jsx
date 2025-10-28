@@ -3,9 +3,9 @@ import ProgresoProyecto from "./ProgresoProyecto";
 export default function ProgresoDeProyectos({}) {
   return (
     <>
-      <div className="bg-white rounded-lg shadow-lg border-1 border-gray-200 p-6">
+      <div className="bg-white rounded-lg shadow-lg border-1 border-gray-200 p-6 w-100 h-auto">
         <h1 className="font-medium text-xl">Progreso de proyectos</h1>
-        <div className="mt-8 space-y-4">
+        <div className="mt-8 space-y-6">
           <ProgresoProyecto
             titulo="Manual App Mobile"
             subtitulo="TechCorp • ES→EN"
