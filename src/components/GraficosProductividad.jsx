@@ -1,6 +1,6 @@
 export default function Tabla({}) {
   return (
-    <div className="bg-white rounded-lg p-6 h-100 w-190 shadow-[0_15px_35px_rgba(0,8,0,0.15)]">
+    <div className="bg-white rounded-lg p-6 h-100 w-190 shadow-md border-gray-100 border">
       <div className="flex justify-between">
         <div className="">
           <h1 className="font-medium text-xl">Productividad por mes</h1>

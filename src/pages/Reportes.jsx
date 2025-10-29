@@ -111,7 +111,7 @@ function Reportes() {
   return (
     <>
       <div className="m-8">
-        <div className="flex justify-between mb-8">
+        <div className="flex justify-between mb-8 bg-white">
           <h2 className="text-3xl font-bold">Reportes y Analytics</h2>
           <BotoneraReportes />
         </div>
@@ -127,26 +127,30 @@ function Reportes() {
               onChange={() => {}}
             />
           </div>
-          <div className="flex w-full gap-8 mb-8">
+          <div className="grid grid-cols-4 bg-white gap-6 w-full mb-8">
             <ReportCard
               numero={24}
               tipo={"proyectos-completados"}
               avance={"↗ +15% vs mes anterior"}
+              balance={"positivo"}
             />
             <ReportCard
               numero={"125,430"}
               tipo={"palabras-traducidas"}
               avance={"↗ +8% vs mes anterior"}
+              balance={"positivo"}
             />
             <ReportCard
               numero={"4.2"}
               tipo={"dias-entrega"}
               avance={"↘ -12% vs mes anterior"}
+              balance={"negativo"}
             />
             <ReportCard
               numero={"96.8%"}
               tipo={"indice-calidad"}
               avance={"↗ +2% vs mes anterior"}
+              balance={"positivo"}
             />
           </div>
           <div className="flex justify-between mb-8">

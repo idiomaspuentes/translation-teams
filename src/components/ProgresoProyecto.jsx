@@ -7,7 +7,7 @@ export default function ProgresoProyecto({ titulo, subtitulo, porcentaje }) {
         <h2 className="font-medium text-md">{titulo}</h2>
         <p className="text-xs text-gray-500">{subtitulo}</p>
       </div>
-      <div className="flex w-[25%] justify-between items-center gap-4">
+      <div className="flex w-[40%] justify-between items-center gap-4">
         <BarraDeProgreso porcentaje={porcentaje} />
 
         <div>

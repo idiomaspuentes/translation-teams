@@ -2,36 +2,46 @@ import PropTypes from "prop-types";
 
 const tipos = {
   "proyectos-completados": {
-    color: "bg-blue-200",
+    color: "bg-blue-100",
     titulo: "Proyectos Completados",
     icono: "📊",
   },
   "palabras-traducidas": {
-    color: "bg-amber-100",
+    color: "bg-green-100",
     titulo: "Palabras Traducidas",
     icono: "📝",
   },
   "dias-entrega": {
-    color: "bg-emerald-200",
+    color: "bg-amber-100",
     titulo: "Días Promedio de Entrega",
     icono: "⏱️",
   },
   "indice-calidad": {
-    color: "bg-purple-300",
+    color: "bg-indigo-100",
     titulo: "Índice de Calidad",
     icono: "✅",
   },
 };
 
-export default function ReportCard({ numero, tipo, avance }) {
+const balances = {
+  positivo: "text-emerald-500",
+  negativo: "text-red-500",
+  neutro: "text-gray-500",
+};
+
+export default function ReportCard({ numero, tipo, avance, balance }) {
   return (
-    <div className="rounded-2xl shadow-sm shadow-black/10 p-4 grow">
-      <div className={`text-lg p-1.5 ${tipos[tipo].color} w-fit rounded-lg`}>
+    <div className="rounded-xl shadow-sm shadow-black/10 p-6 grow">
+      <div
+        className={`text-lg py-1.5 px-2 ${tipos[tipo].color} w-fit rounded-lg mb-2`}
+      >
         {tipos[tipo].icono}
       </div>
-      <h2 className="text-2xl text-gray-900 font-bold">{numero}</h2>
-      <p className="text-gray-500 text-sm">{tipos[tipo].titulo}</p>
-      <span className="text-emerald-500 text-xs">{avance}</span>
+      <div className="space-y-2">
+        <h2 className="text-3xl text-gray-900 font-bold">{numero}</h2>
+        <p className="text-gray-500 text-sm">{tipos[tipo].titulo}</p>
+        <span className={`${balances[balance]} text-xs`}>{avance}</span>
+      </div>
     </div>
   );
 }

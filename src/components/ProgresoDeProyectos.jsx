@@ -3,9 +3,32 @@ import ProgresoProyecto from "./ProgresoProyecto";
 export default function ProgresoDeProyectos({}) {
   return (
     <>
-      <div className="bg-white rounded-lg shadow-lg border-1 border-gray-200 p-6 w-100 h-auto">
+      <div className="bg-white rounded-lg shadow-md border-1 border-gray-100 p-6 w-100 h-auto">
         <h1 className="font-medium text-xl">Progreso de proyectos</h1>
-        <div className="mt-8 space-y-6">
+        <div className="mt-8 space-y-6 overflow-y-scroll h-70 pr-4">
+          <ProgresoProyecto
+            titulo="Manual App Mobile"
+            subtitulo="TechCorp • ES→EN"
+            porcentaje="85"
+          />
+
+          <ProgresoProyecto
+            titulo="Documentación API"
+            subtitulo="DevTools • EN→FR,DE"
+            porcentaje="92"
+          />
+
+          <ProgresoProyecto
+            titulo="Campaña Marketing"
+            subtitulo="Marketing Pro • EN→ES,PT"
+            porcentaje="45"
+          />
+
+          <ProgresoProyecto
+            titulo="Sitio Web Corp"
+            subtitulo="Global Inc • DE→ES"
+            porcentaje="100"
+          />
           <ProgresoProyecto
             titulo="Manual App Mobile"
             subtitulo="TechCorp • ES→EN"

@@ -3,7 +3,7 @@ import FilaTabla from "./FilaTabla";
 
 export default function Tabla({ datos }) {
   return (
-    <div className="shadow-[0_0_6px_0_rgba(0,0,0,0.15)] rounded-xl">
+    <div className="shadow-[0_0_6px_0_rgba(0,0,0,0.15)] rounded-xl bg-white">
       <div className="flex justify-between items-baseline px-6 py-6 text-center p-6 rounded-lg">
         <h1 className="text-xl font-medium">Rendimiento por Traductor</h1>
         <div className=" flex gap-2">
