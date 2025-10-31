@@ -15,16 +15,18 @@ export function ProjectCard({
   entregado = false,
 }) {
   return (
-    <div className=" bg-white px-8 w-full py-8 rounded-2xl p-4 shadow-sm border border-gray-100">
+    <div className=" bg-white p-8 w-full rounded-2xl shadow-sm border border-gray-200 mb-6">
       <span className="flex justify-between">
         <h2 className="text-lg font-medium">{titulo}</h2>
-        <a
-          href="/estado"
-          className={`inline-flex items-center ${colorStatus[estado]} font-medium text-xs bg-green-200 rounded-full px-3 py-1`}
-        >
-          {" "}
-          {estado}
-        </a>
+        <span>
+          <a
+            href="/estado"
+            className={`flex-0 inline-flex items-center ${colorStatus[estado]} font-medium text-xs bg-green-200 rounded-full px-3 py-1`}
+          >
+            {" "}
+            {estado}
+          </a>
+        </span>
       </span>
       <h3 className="text-gray-500 text-left text-sm"> {subtitulo}</h3>
       <div className="flex justify-between pt-8 mb-2">
@@ -66,7 +68,7 @@ export function ProjectCard({
 
         <a
           href="/tablero"
-          className="inline-flex items-center text-sm bg-white rounded-lg border-1 border-gray-300 px-4 py-2 hover:bg-gray-50"
+          className="inline-flex items-center text-sm bg-white rounded-lg border-1 border-gray-300 px-4 py-2 hover:bg-gray-100"
         >
           {tablero}
         </a>

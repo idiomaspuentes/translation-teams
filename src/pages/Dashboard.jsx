@@ -1,3 +1,4 @@
+import FiltroProyectosDashboard from "../components/FiltroProyectosDashboard.jsx";
 import ProjectCard from "../components/ProjectCard.jsx";
 import SummaryCard from "../components/SummaryCard.jsx";
 export default function Dashboard() {
@@ -8,7 +9,7 @@ export default function Dashboard() {
         <h2 className="text-gray-500">
           Resumen general de proyectos y actividad
         </h2>
-        <div className="grid grid-cols-4 items-center gap-6">
+        <div className="grid grid-cols-4 items-center gap-4 w-full mt-12 mb-12">
           <SummaryCard
             numero="8"
             titulo="Paquetes activos"
@@ -34,6 +35,10 @@ export default function Dashboard() {
             color="green"
           />
         </div>
+        <div className="mt-4 mb-20">
+          <FiltroProyectosDashboard />
+        </div>
+
         <div className="grid grid-cols-3 gap-6">
           <ProjectCard
             porcentaje="75"
