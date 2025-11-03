@@ -1,7 +1,9 @@
 function Kanban() {
   return (
     <>
-      <h2>Hola este es el kanban</h2>
+      <div className="m-8">
+        <h2 className="text-2xl font-bold">Tablero kanban</h2>
+      </div>
     </>
   );
 }
