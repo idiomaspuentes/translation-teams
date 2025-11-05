@@ -1,4 +1,5 @@
 import { func } from "prop-types";
+import React, { useRef } from "react";
 import "../index.css";
 export default function Proyectos() {
   function BtnAoutline({ name }) {
@@ -11,7 +12,7 @@ export default function Proyectos() {
 
   function BtnPrimary({ name }) {
     return (
-      <a className="py-3 px-6 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-[#3b82f6] text-white hove:bg-[#2563eb]">
+      <a className="py-3 px-6 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-[#3b82f6] text-white hover:bg-[#2563eb]">
         {name}
       </a>
     );
@@ -37,6 +38,31 @@ export default function Proyectos() {
             background: #f1f5f9;
             color: #64748b;
         } */
+  }
+
+  {
+    /* onClick  */
+  }
+  function toggleView(view) {
+    const cardsView = document.getElementById("cards-view");
+    const tableView = document.getElementById("table-view");
+    const viewBtns = document.querySelectorAll(".view-btn");
+
+    viewBtns.forEach((btn) => btn.classList.remove("active"));
+
+    if (view === "cards") {
+      cardsView.style.display = "grid";
+      tableView.classList.remove("active");
+      document.querySelector(".view-btn:first-child").classList.add("active");
+    } else {
+      cardsView.style.display = "none";
+      tableView.classList.add("active");
+      document.querySelector(".view-btn:last-child").classList.add("active");
+    }
+  }
+
+  {
+    /* --- */
   }
   return (
     <>
@@ -159,279 +185,40 @@ export default function Proyectos() {
 
             <div className="flex items-center gap-2 mb-4">
               <div className="flex mr-2">
-                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2">
+                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2 first:ml-0">
                   MG
                 </div>
-                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2">
+                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2 first:ml-0">
                   JL
                 </div>
-                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2">
+                <div className="w-6 h-6 rounded-[50%] bg-[linear-gradient(135deg,_#f59e0b,_#d97706)] flex items-center justify-center text-white text-[0.625rem] font-bold border-2 border-solid bg-white -ml-2 first:ml-0">
                   CR
                 </div>
               </div>
-              <span className="team-count">3 miembros</span>
+              <span className="text-xs text-[#64748b]">3 miembros</span>
             </div>
 
-            <div className="project-dates">
+            <div className="flex justify-between text-xs text-[#64748b] mb-4">
               <span>Inicio: 15 Nov 2024</span>
               <span>Entrega: 30 Nov 2024</span>
             </div>
-
-            <div className="project-actions">
+            {/* Component button small */}
+            <div className="flex gap-2">
               <a
                 href="project-detail.html?id=1"
-                className="btn btn-small btn-primary"
+                className="py-2 px-2 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-[#3b82f6] text-white hover:bg-[#2563eb] text-[0.875rem]"
               >
                 Ver Detalles
               </a>
               <a
                 href="project-tasks.html?id=1"
-                className="btn btn-small btn-outline"
+                className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
               >
                 Tareas
               </a>
               <a
                 href="kanban.html?project=1"
-                className="btn btn-small btn-outline"
-              >
-                Kanban
-              </a>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="project-header">
-              <div>
-                <h3 className="project-title">Documentación API</h3>
-                <div className="project-client">Cliente: DevTools</div>
-                <div className="project-languages">EN → FR, DE</div>
-              </div>
-              <span className="project-status status-review">Revisión</span>
-            </div>
-
-            <p className="project-description">
-              Traducción de documentación técnica de API REST, incluyendo
-              ejemplos de código y guías de implementación.
-            </p>
-
-            <div className="project-progress">
-              <div className="progress-label">
-                <span>Progreso General</span>
-                <span>92%</span>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: " 92%" }}></div>
-              </div>
-            </div>
-
-            <div className="project-stats">
-              <div className="stat-item">
-                <div className="stat-value">2,840</div>
-                <div className="stat-label">Palabras</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">18</div>
-                <div className="stat-label">Tareas</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">5</div>
-                <div className="stat-label">Traductores</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">2</div>
-                <div className="stat-label">Días rest.</div>
-              </div>
-            </div>
-
-            <div className="project-team">
-              <div className="team-avatars">
-                <div className="team-avatar">MG</div>
-                <div className="team-avatar">JL</div>
-                <div className="team-avatar">CR</div>
-                <div className="team-avatar">LS</div>
-                <div className="team-avatar">+1</div>
-              </div>
-              <span className="team-count">5 miembros</span>
-            </div>
-
-            <div className="project-dates">
-              <span>Inicio: 1 Nov 2024</span>
-              <span>Entrega: 25 Nov 2024</span>
-            </div>
-
-            <div className="project-actions">
-              <a
-                href="project-detail.html?id=2"
-                className="btn btn-small btn-primary"
-              >
-                Ver Detalles
-              </a>
-              <a
-                href="project-tasks.html?id=2"
-                className="btn btn-small btn-outline"
-              >
-                Tareas
-              </a>
-              <a
-                href="kanban.html?project=2"
-                className="btn btn-small btn-outline"
-              >
-                Kanban
-              </a>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="project-header">
-              <div>
-                <h3 className="project-title">Sitio Web Corporativo</h3>
-                <div className="project-client">Cliente: Global Inc</div>
-                <div className="project-languages">DE → ES</div>
-              </div>
-              <span className="project-status status-completed">
-                Completado
-              </span>
-            </div>
-
-            <p className="project-description">
-              Localización completa del sitio web corporativo, incluyendo
-              contenido marketing y páginas institucionales.
-            </p>
-
-            <div className="project-progress">
-              <div className="progress-label">
-                <span>Progreso General</span>
-                <span>100%</span>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: "100%" }}></div>
-              </div>
-            </div>
-
-            <div className="project-stats">
-              <div className="stat-item">
-                <div className="stat-value">5,120</div>
-                <div className="stat-label">Palabras</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">25</div>
-                <div className="stat-label">Tareas</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">4</div>
-                <div className="stat-label">Traductores</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">✓</div>
-                <div className="stat-label">Entregado</div>
-              </div>
-            </div>
-
-            <div className="project-team">
-              <div className="team-avatars">
-                <div className="team-avatar">MG</div>
-                <div className="team-avatar">JL</div>
-                <div className="team-avatar">CR</div>
-                <div className="team-avatar">LS</div>
-              </div>
-              <span className="team-count">4 miembros</span>
-            </div>
-
-            <div className="project-dates">
-              <span>Inicio: 10 Oct 2024</span>
-              <span>Entregado: 5 Nov 2024</span>
-            </div>
-
-            <div className="project-actions">
-              <a
-                href="project-detail.html?id=3"
-                className="btn btn-small btn-primary"
-              >
-                Ver Detalles
-              </a>
-              <a
-                href="project-reports.html?id=3"
-                className="btn btn-small btn-outline"
-              >
-                Reporte
-              </a>
-              <button className="btn btn-small btn-outline">Descargar</button>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="project-header">
-              <div>
-                <h3 className="project-title">Campaña Marketing Q4</h3>
-                <div className="project-client">Cliente: Marketing Pro</div>
-                <div className="project-languages">EN → ES, PT</div>
-              </div>
-              <span className="project-status status-active">Activo</span>
-            </div>
-
-            <p className="project-description">
-              Traducción de materiales de campaña publicitaria para el cuarto
-              trimestre, incluyendo copy y elementos creativos.
-            </p>
-
-            <div className="project-progress">
-              <div className="progress-label">
-                <span>Progreso General</span>
-                <span>45%</span>
-              </div>
-              <div className="progress-bar">
-                <div className="progress-fill" style={{ width: "45%" }}></div>
-              </div>
-            </div>
-
-            <div className="project-stats">
-              <div className="stat-item">
-                <div className="stat-value">890</div>
-                <div className="stat-label">Palabras</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">8</div>
-                <div className="stat-label">Tareas</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">2</div>
-                <div className="stat-label">Traductores</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-value">8</div>
-                <div className="stat-label">Días rest.</div>
-              </div>
-            </div>
-
-            <div className="project-team">
-              <div className="team-avatars">
-                <div className="team-avatar">MG</div>
-                <div className="team-avatar">JL</div>
-              </div>
-              <span className="team-count">2 miembros</span>
-            </div>
-
-            <div className="project-dates">
-              <span>Inicio: 20 Nov 2024</span>
-              <span>Entrega: 15 Dic 2024</span>
-            </div>
-
-            <div className="project-actions">
-              <a
-                href="project-detail.html?id=4"
-                className="btn btn-small btn-primary"
-              >
-                Ver Detalles
-              </a>
-              <a
-                href="project-tasks.html?id=4"
-                className="btn btn-small btn-outline"
-              >
-                Tareas
-              </a>
-              <a
-                href="kanban.html?project=4"
-                className="btn btn-small btn-outline"
+                className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
               >
                 Kanban
               </a>
@@ -440,8 +227,11 @@ export default function Proyectos() {
         </div>
 
         {/* Vista de Tabla --*/}
-        <div className="projects-table" id="table-view">
-          <div className="table-content">
+        <div
+          className="bg-white rounded-xl shadow-2xs border-1 border-solid border-[#f1f5f9] overflow-hidden hidden"
+          id="table-view"
+        >
+          <div className="overflow-x-auto">
             <table>
               <thead>
                 <tr>
