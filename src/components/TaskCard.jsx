@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export const TaskCard = ({
   id,
-  prioridad = 'Media',
+  prioridad = "Media",
   titulo,
   descripcion,
   etiquetas = [],
@@ -11,9 +11,9 @@ export const TaskCard = ({
   fechaVencimiento,
 }) => {
   const prioridadColor = {
-    Alta: 'bg-red-100 text-red-700',
-    Media: 'bg-yellow-100 text-yellow-700',
-    Baja: 'bg-green-100 text-green-700',
+    Alta: "bg-red-100 text-red-700",
+    Media: "bg-yellow-100 text-yellow-700",
+    Baja: "bg-green-100 text-green-700",
   };
 
   return (
@@ -21,7 +21,11 @@ export const TaskCard = ({
       {/* ID y Prioridad */}
       <div className="flex justify-between items-start mb-2">
         <span className="text-sm text-gray-500 font-medium">#{id}</span>
-        <span className={`text-xs px-3 py-0.5 rounded-full font-semibold ${prioridadColor[prioridad] || prioridadColor['Media']}`}>
+        <span
+          className={`text-xs px-3 py-0.5 rounded-full font-semibold ${
+            prioridadColor[prioridad] || prioridadColor["Media"]
+          }`}
+        >
           {prioridad}
         </span>
       </div>
@@ -35,7 +39,10 @@ export const TaskCard = ({
       {/* Etiquetas */}
       <div className="flex flex-wrap gap-2 mt-3">
         {etiquetas.map((etiqueta, index) => (
-          <span key={index} className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-0.5 rounded">
+          <span
+            key={index}
+            className="bg-gray-100 text-gray-700 text-xs font-medium px-2 py-0.5 rounded"
+          >
             {etiqueta}
           </span>
         ))}
@@ -54,3 +61,4 @@ export const TaskCard = ({
     </div>
   );
 };
+export default TaskCard;
