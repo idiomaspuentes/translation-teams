@@ -227,135 +227,191 @@ export default function Proyectos() {
         </div>
 
         {/* Vista de Tabla --*/}
+        {/* en el clasName usar hidden para ocultar mientrastanto */}
         <div
-          className="bg-white rounded-xl shadow-2xs border-1 border-solid border-[#f1f5f9] overflow-hidden hidden"
+          className="bg-white rounded-xl shadow-2xs border-1 border-solid border-[#f1f5f9] overflow-hidden "
           id="table-view"
         >
           <div className="overflow-x-auto">
-            <table>
+            <table className="w-full border-collapse">
               <thead>
-                <tr>
-                  <th>Proyecto</th>
-                  <th>Cliente</th>
-                  <th>Idiomas</th>
-                  <th>Progreso</th>
-                  <th>Palabras</th>
-                  <th>Equipo</th>
-                  <th>Entrega</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
+                <tr className="hover:bg-[#f8fafc]">
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Proyecto
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Cliente
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Idiomas
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Progreso
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Palabras
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Equipo
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Entrega
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Estado
+                  </th>
+                  <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
+                    Acciones
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <div className="table-project-info">
-                      <div className="table-project-title">
+                <tr className="hover:bg-[#f8fafc]">
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    {/* font-semibold text-[#64748b] */}
+                    <div className="flex flex-col gap-1">
+                      <div className="font-semibold text-[#1e293b]">
                         Manual de Usuario - App Mobile
                       </div>
-                      <div className="table-project-meta">
+                      <div className="font-semibold text-[#64748b]">
                         Creado: 15 Nov 2024
                       </div>
                     </div>
                   </td>
-                  <td>TechCorp</td>
-                  <td>ES → EN</td>
-                  <td>75%</td>
-                  <td>1,250</td>
-                  <td>3</td>
-                  <td>30 Nov 2024</td>
-                  <td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    TechCorp
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    ES → EN
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    75%
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    1,250
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    3
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    30 Nov 2024
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
                     <span className="project-status status-active">Activo</span>
                   </td>
-                  <td>
-                    <div style={{ display: "flex; gap: 0.5rem;" }}>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    <div className="flex gap-2">
                       <a
                         href="project-detail.html?id=1"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Ver
                       </a>
                       <a
                         href="project-tasks.html?id=1"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Tareas
                       </a>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className="table-project-info">
-                      <div className="table-project-title">
+                <tr className="hover:bg-[#f8fafc]">
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    <div className="flex flex-col gap-1">
+                      <div className="font-semibold text-[#1e293b]">
                         Documentación API
                       </div>
-                      <div className="table-project-meta">
+                      <div className="font-semibold text-[#64748b]">
                         Creado: 1 Nov 2024
                       </div>
                     </div>
                   </td>
-                  <td>DevTools</td>
-                  <td>EN → FR, DE</td>
-                  <td>92%</td>
-                  <td>2,840</td>
-                  <td>5</td>
-                  <td>25 Nov 2024</td>
-                  <td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    DevTools
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    EN → FR, DE
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    92%
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    2,840
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    5
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    25 Nov 2024
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
                     <span className="project-status status-review">
                       Revisión
                     </span>
                   </td>
-                  <td>
-                    <div style={{ display: "flex; gap: 0.5rem;" }}>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    <div className="flex gap-2">
                       <a
                         href="project-detail.html?id=2"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Ver
                       </a>
                       <a
                         href="project-tasks.html?id=2"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Tareas
                       </a>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className="table-project-info">
-                      <div className="table-project-title">
+                <tr className="hover:bg-[#f8fafc]">
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    <div className="flex flex-col gap-1">
+                      <div className="font-semibold text-[#1e293b]">
                         Sitio Web Corporativo
                       </div>
-                      <div className="table-project-meta">
+                      <div className="font-semibold text-[#64748b]">
                         Creado: 10 Oct 2024
                       </div>
                     </div>
                   </td>
-                  <td>Global Inc</td>
-                  <td>DE → ES</td>
-                  <td>100%</td>
-                  <td>5,120</td>
-                  <td>4</td>
-                  <td>Entregado</td>
-                  <td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    Global Inc
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    DE → ES
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    100%
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    5,120
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    4
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    Entregado
+                  </td>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
                     <span className="project-status status-completed">
                       Completado
                     </span>
                   </td>
-                  <td>
-                    <div style={{ display: "flex; gap: 0.5rem;" }}>
+                  <td className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9]">
+                    <div className="flex gap-2">
                       <a
                         href="project-detail.html?id=3"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Ver
                       </a>
                       <a
                         href="project-reports.html?id=3"
-                        className="btn btn-small btn-outline"
+                        className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
                       >
                         Reporte
                       </a>
