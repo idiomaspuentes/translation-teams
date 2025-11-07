@@ -7,7 +7,7 @@ export default function TaskColumn({ children, titulo, numero, agregar }) {
         {/* Columna - borrador */}
         <div className="w-[300px] flex flex-col bg-[#f8fafc] rounded-xl border border-solid border-[#e2e8f0] ">
           {/* columna - encabezado */}
-          <div className="px-4 py-6  rounded-[0.75rem_0.75rem_0_0] border-solid border-b-1 border-[#e2e8f0] flex justify-between items-center">
+          <div className="px-4 py-4  rounded-[0.75rem_0.75rem_0_0] border-solid border-b-1 border-[#e2e8f0] flex justify-between items-center">
             <div className="font-semibold flex items-center gap-[0.5rem]">
               <div className={`w-2 h-2 bg-[#6b7280] rounded-[50%]`}></div>
               {titulo}
