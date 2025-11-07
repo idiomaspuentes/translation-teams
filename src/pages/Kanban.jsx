@@ -6,7 +6,7 @@ function Kanban() {
   return (
     <>
       <TableroKanban />
-      <div className="m-8">
+      <div className="m-2">
         <div className="flex h-full min-w-max">
           <TaskColumn titulo="Adaptación" numero="3" agregar="Agregar tarea">
             <div className="mt-2 space-y-6 overflow-y-scroll h-70 pr-4">
@@ -109,22 +109,22 @@ function Kanban() {
               <TaskCard
                 id="#MR-009"
                 prioridad="Media"
-                titulo="Traducir sección 'Introducción'"
-                descripcion="Traducir la sección introductoria del manual (500 palabras aprox.)"
-                etiquetas={["ES→EN", "Manual"]}
+                titulo="Paquete Completo - Marcos 1"
+                descripcion="TPL, TPS, Notas y Preguntas publicados en Door43"
+                etiquetas={["Paquete", "Door43"]}
                 usuarioAsignado="María García"
                 inicialesUsuario="MG"
-                fechaVencimiento="Hoy"
+                fechaVencimiento="Ayer"
               />
               <TaskCard
-                id="TT-001"
-                prioridad="Alta"
-                titulo="Traducir sección 'Introducción'"
-                descripcion="Traducir la sección introductoria del manual (500 palabras aprox.)"
-                etiquetas={["ES→EN", "Manual"]}
-                usuarioAsignado="María García"
-                inicialesUsuario="MG"
-                fechaVencimiento="Hoy"
+                id="#FL-010"
+                prioridad="Baja"
+                titulo="Paquete Completo - Filemón"
+                descripcion="Primer libro completo publicado en Door43"
+                etiquetas={["Filemón", "Completo"]}
+                usuarioAsignado="Juan López"
+                inicialesUsuario="JL"
+                fechaVencimiento="2 días"
               />
             </div>
           </TaskColumn>

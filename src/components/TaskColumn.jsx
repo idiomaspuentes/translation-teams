@@ -2,7 +2,7 @@ import TaskCard from "./TaskCard.jsx";
 
 export default function TaskColumn({ children, titulo, numero, agregar }) {
   return (
-    <div className="flex-1 pt-[1rem] pr-[2rem] pb-[2rem] pl-[2rem] overflow-x-auto overflow-y-hidden">
+    <div className="flex-1 pt-[1rem]  pb-[2rem] pl-[2rem] overflow-x-auto overflow-y-hidden">
       <div className="flex gap-6 h-full min-w-max ">
         {/* Columna - borrador */}
         <div className="w-[300px] flex flex-col bg-[#f8fafc] rounded-xl border border-solid border-[#e2e8f0] ">
