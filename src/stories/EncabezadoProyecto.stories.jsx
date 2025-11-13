@@ -6,5 +6,11 @@ export default {
 };
 
 export const Ejemplo = {
-  args: {},
+  args: {
+    subtitulo: "CCR v2 • Iglesia Bautista Central • EN → ES",
+    fechaInicio: "15 Noviembre 2024",
+    fechaEntrega: "30 Noviembre 2024",
+    diasRestantes: "5 días",
+    capitulosTotales: "16 capítulos",
+  },
 };
