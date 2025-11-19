@@ -2,6 +2,9 @@ import BreadCrumbs from "../components/BreadCrumbs";
 import EncabezadoProyecto from "../components/EncabezadoProyecto";
 import ProgresoGeneralProyecto from "../components/ProgresoGeneralProyecto";
 import DescripcionDelProyecto from "../components/DescripcionDelProyecto";
+import EquipoDelProyecto from "../components/EquipoDelProyecto";
+import ArchivosYRecursosDelProyecto from "../components/ArchivosYRecursosDelProyecto";
+import ActividadRecienteDelProyecto from "../components/ActividadRecienteDelProyecto";
 
 function Proyectos() {
   return (
@@ -32,8 +35,13 @@ function Proyectos() {
             porcentaje={"75%"}
           />
         </div>
-        <div className="mt-8">
+        <div className="flex justify-between  gap-8 mt-8">
           <DescripcionDelProyecto />
+          <EquipoDelProyecto />
+        </div>
+        <div className="mt-8">
+          <ArchivosYRecursosDelProyecto />
+          <ActividadRecienteDelProyecto />
         </div>
       </div>
     </>
