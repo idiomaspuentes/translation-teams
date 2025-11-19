@@ -1,6 +1,6 @@
 export function ProgresoGeneralProyecto({ titulo, boton, porcentaje }) {
   return (
-    <div className=" bg-white p-8 w-full rounded-2xl shadow-sm border border-gray-200 m-6">
+    <div className=" bg-white p-8 w-full rounded-2xl shadow-sm border border-gray-200">
       <span className="flex justify-between">
         <h2 className="text-xl font-medium text-gray-800">{titulo}</h2>
         <div>

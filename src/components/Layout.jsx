@@ -17,9 +17,38 @@ const Layout = ({ children }) => {
         <aside className="w-56 bg-gray-100 p-5 text-red-700 overflow-y-auto border-r border-solid border-gray-300 font-mono text-lg">
           <nav>
             <ul className="list-none">
-              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/">Dashboard</Link></li>
-              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/reportes">Reportes</Link></li>
-              <li className="mb-2"><Link className="no-underline text-inherit hover:underline" to="/kanban">Kanban</Link></li>
+              <li className="mb-2">
+                <Link
+                  className="no-underline text-inherit hover:underline"
+                  to="/"
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  className="no-underline text-inherit hover:underline"
+                  to="/reportes"
+                >
+                  Reportes
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  className="no-underline text-inherit hover:underline"
+                  to="/kanban"
+                >
+                  Kanban
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  className="no-underline text-inherit hover:underline"
+                  to="/proyectos"
+                >
+                  Proyectos
+                </Link>
+              </li>
             </ul>
           </nav>
         </aside>
@@ -34,4 +63,3 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
-
