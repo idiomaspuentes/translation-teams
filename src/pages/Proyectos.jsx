@@ -32,16 +32,18 @@ function Proyectos() {
           <ProgresoGeneralProyecto
             titulo={"Progreso General"}
             boton={"Ver reporte completo"}
-            porcentaje={"75%"}
+            porcentaje={"75"}
           />
         </div>
-        <div className="flex justify-between  gap-8 mt-8">
-          <DescripcionDelProyecto />
-          <EquipoDelProyecto />
-        </div>
-        <div className="mt-8">
-          <ArchivosYRecursosDelProyecto />
-          <ActividadRecienteDelProyecto />
+        <div className="flex gap-8">
+          <div className="mt-8 w-[60%] space-y-8">
+            <DescripcionDelProyecto />
+            <ActividadRecienteDelProyecto />
+          </div>
+          <div className="mt-8 w-[40%] space-y-8">
+            <EquipoDelProyecto />
+            <ArchivosYRecursosDelProyecto />
+          </div>
         </div>
       </div>
     </>
