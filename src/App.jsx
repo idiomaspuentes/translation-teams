@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import Reportes from "./pages/Reportes";
 import Kanban from "./pages/Kanban";
 import Dashboard from "./pages/Dashboard";
+import Proyectos from "./pages/Proyectos";
 
 const Translations = () => <h2>Lista de Traducciones</h2>;
 const Progress = () => <h2>Progreso del Equipo</h2>;
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/reportes" element={<Reportes />} />
           <Route path="/kanban" element={<Kanban />} />
+          <Route path="/proyectos" element={<Proyectos />} />
         </Routes>
       </Layout>
     </BrowserRouter>

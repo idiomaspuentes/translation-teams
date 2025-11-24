@@ -1,6 +1,8 @@
+import BarraDeProgreso from "../components/BarraDeProgreso";
+
 export function ProgresoGeneralProyecto({ titulo, boton, porcentaje }) {
   return (
-    <div className=" bg-white p-8 w-full rounded-2xl shadow-sm border border-gray-200 m-6">
+    <div className=" bg-white p-8 w-full rounded-2xl shadow-sm border border-gray-200">
       <span className="flex justify-between">
         <h2 className="text-xl font-medium text-gray-800">{titulo}</h2>
         <div>
@@ -15,12 +17,8 @@ export function ProgresoGeneralProyecto({ titulo, boton, porcentaje }) {
         <CajaDeDatos numero="12" titulo="Porciones completadas" />
         <CajaDeDatos numero="48" titulo="Tareas total" />
       </div>
-
-      <div className=" bg-gray-500/20 h-3 rounded-full mt-8">
-        <div
-          className="bg-blue-600 bg-gradient-to-r from-blue-500 to-blue-700  h-full rounded-full"
-          style={{ width: porcentaje + "%" }}
-        ></div>
+      <div className="mt-6">
+        <BarraDeProgreso porcentaje={porcentaje} />
       </div>
       <div className="flex gap-2">
         <CajaEstado titulo="Adaptación y Afinación" porcentaje="85%" />
