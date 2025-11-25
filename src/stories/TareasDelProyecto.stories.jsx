@@ -7,7 +7,7 @@ export default {
 
 export const Ejemplo = {
   args: {
-    subtitulo: "Manual de Usuario - App Mobile",
+    tituloDelProyecto: "Manual de Usuario - App Mobile",
     tareas: "12 tareas",
     subtareas: "38 subtareas",
   },
