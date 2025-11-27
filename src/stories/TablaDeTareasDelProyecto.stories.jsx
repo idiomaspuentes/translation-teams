@@ -12,9 +12,8 @@ const rendimientos = [
     iniciales: "MG",
     asignado: "María García",
     estado: "Completado",
+    prioridad: "Alta",
     progreso: "100%",
-    palabras: "250",
-    tiempo: "6h",
     vencimiento: "Completado",
   },
   {
@@ -23,9 +22,8 @@ const rendimientos = [
     iniciales: "MG",
     asignado: "María García",
     estado: "En progreso",
+    prioridad: "Alta",
     progreso: "65%",
-    palabras: "320",
-    tiempo: "2.6h",
     vencimiento: "Hoy",
   },
   {
@@ -34,9 +32,8 @@ const rendimientos = [
     iniciales: "CR",
     asignado: "Carlos Ruiz",
     estado: "Revisión",
+    prioridad: "Alta",
     progreso: "80%",
-    palabras: "250",
-    tiempo: "3h",
     vencimiento: "Hoy",
   },
 ];
