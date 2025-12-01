@@ -24,9 +24,9 @@ export default function BuscarTareasProyectos({}) {
               <option>Laura Silva</option>
             </select>
           </div>
-          <div className="py-2 px-5 item-center justify-center flex rounded-lg border border-gray-300 divide-x divide-gray-300">
-            <button className="bg-blue-500">🌳</button>
-            <button className="bg-white">📋</button>
+          <div className="flex rounded-lg border border-gray-300">
+            <button className="bg-blue-500 px-3">🌳</button>
+            <button className="bg-white px-3">📋</button>
           </div>
         </div>
       </div>
