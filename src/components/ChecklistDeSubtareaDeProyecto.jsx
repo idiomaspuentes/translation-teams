@@ -1,24 +1,36 @@
-export default function ChecklistDeSubtareaDeProyecto({}) {
+import { Strikethrough } from "lucide-react";
+import { useState } from "react";
+
+export default function ChecklistDeSubtareaDeProyecto({
+  listo,
+  titulo,
+  asignado,
+}) {
+  const [done, setDone] = useState(listo);
   return (
     <>
       <div className="flex justify-between">
         <div>
-          <div class="flex items-center">
+          <div className="flex items-center">
             <input
               id="mi-checkbox"
               type="checkbox"
-              class="w-4 h-4 text-green-600 bg-green-100 border-green-300 rounded focus:ring-green-500"
+              className="w-4 h-4 text-blue-600 bg-blue-100 border-gray-300 rounded focus:ring-blue-500"
+              checked={done}
+              onChange={() => setDone(!done)}
             />
             <label
               for="mi-checkbox"
-              class="ms-2 text-sm font-medium text-gray-900"
+              className={`ms-2 text-sm font-medium text-gray-600 ${
+                done && "line-through"
+              }`}
             >
-              Traducir sección "Requisitos del sistema"
+              {titulo}
             </label>
           </div>
         </div>
         <div>
-          <span className="text-gray-600">María García</span>
+          <span className="text-gray-600">{asignado}</span>
         </div>
       </div>
     </>
