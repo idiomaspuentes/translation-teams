@@ -9,13 +9,12 @@ export const Ejemplo = {
   args: {
     listo: true,
     titulo: "Traducir Capítulo 1: Introducción",
-    subtitulo: "#TT-001 •",
-    subtitulo2: "250 palabras •",
+    subtitulo: "#TT-001",
+    subtitulo2: "250 palabras",
     iniciales: "MG",
     asignado: "María García",
-    estado: "Alta",
-    boton1: "Completado",
-    boton2: "Completado",
-    boton3: "Ver",
+    prioridad: "Alta",
+    estado: "Completado",
+    diaLimite: "Completado",
   },
 };
