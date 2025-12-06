@@ -27,7 +27,7 @@ export const Ejemplo = {
             diaLimite: "Completado",
           },
           {
-            listo: true,
+            listo: false,
             titulo: "Traducir Capítulo 2: Instalación",
             subtitulo: "#TT-002",
             subtitulo2: "320 palabras",
@@ -43,20 +43,20 @@ export const Ejemplo = {
                 asignado: "María García",
               },
               {
-                listo: true,
+                listo: false,
                 titulo: `Traducir sección "Proceso de instalación"`,
                 asignado: "María García",
               },
 
               {
-                listo: true,
+                listo: false,
                 titulo: `Traducir sección "Configuración inicial"`,
                 asignado: "María García",
               },
             ],
           },
           {
-            listo: true,
+            listo: false,
             titulo: "Traducir Capítulo 3: Configuración avanzada",
             subtitulo: "#TT-003",
             subtitulo2: "480 palabras",
@@ -67,7 +67,7 @@ export const Ejemplo = {
             diaLimite: "Mañana",
           },
           {
-            listo: true,
+            listo: false,
             titulo: "Traducir FAQ - Preguntas frecuentes",
             subtitulo: "#TT-004",
             subtitulo2: "200 palabras",
@@ -88,7 +88,7 @@ export const Ejemplo = {
         porcentaje: 40,
         tareas: [
           {
-            listo: true,
+            listo: false,
             titulo: "Revisar Capítulo 1: Introducción",
             subtitulo: "#TT-005",
             subtitulo2: "Revisión linguística",
@@ -99,7 +99,7 @@ export const Ejemplo = {
             diaLimite: "Hoy",
           },
           {
-            listo: true,
+            listo: false,
             titulo: "Control de calidad - Terminología",
             subtitulo: "#TT-006",
             subtitulo2: "Verificación glosario",
@@ -120,7 +120,7 @@ export const Ejemplo = {
         porcentaje: 25,
         tareas: [
           {
-            listo: true,
+            listo: false,
             titulo: "Localizar screenshots de UI",
             subtitulo: "#TT-007",
             subtitulo2: "24 imagenes",
@@ -131,7 +131,7 @@ export const Ejemplo = {
             diaLimite: "5 días",
           },
           {
-            listo: true,
+            listo: false,
             titulo: "Adaptar formatos y medidas",
             subtitulo: "#TT-008",
             subtitulo2: "Unidades métricas",

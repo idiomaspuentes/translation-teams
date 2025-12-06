@@ -14,12 +14,12 @@ export default function TareaProyecto({
     <>
       <div
         onClick={() => setAbierto((abierto) => !abierto)}
-        className="bg-gray-50 rounded-xl shadow border border-gray-200 p-6"
+        className="bg-gray-50 border-b border-gray-200 p-6"
       >
         <div className="flex justify-between">
           <div className="flex items-center">
             <div className="rounded-lg mr-4">
-              <div>{abierto ? "▶" : "🔽"}</div>
+              <div>{abierto ? "🔽" : "▶"}</div>
             </div>
             <div>
               <h1 className="text-xl font-medium">{titulo}</h1>
