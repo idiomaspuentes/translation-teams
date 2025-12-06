@@ -21,16 +21,14 @@ export default function ChecklistDeSubtareaDeProyecto({
             />
             <label
               for="mi-checkbox"
-              className={`ms-2 text-sm font-medium text-gray-600 ${
-                done && "line-through"
-              }`}
+              className={`ms-2 text-sm text-gray-700 ${done && "line-through"}`}
             >
               {titulo}
             </label>
           </div>
         </div>
         <div>
-          <span className="text-gray-600">{asignado}</span>
+          <span className="text-gray-500 text-xs">{asignado}</span>
         </div>
       </div>
     </>
