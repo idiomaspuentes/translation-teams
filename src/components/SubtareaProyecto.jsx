@@ -1,14 +1,14 @@
 const coloresStatus = {
-  Alta: "text-red-600 bg-red-100",
-  Media: "text-amber-600 bg-amber-100",
+  Alta: "text-red-600 bg-red-200",
+  Media: "text-orange-600 bg-orange-200",
   Baja: "text-green-600 bg-green-100",
 };
 
 const coloresStatus2 = {
-  Completado: "text-green-600 bg-green-100",
-  "En progreso": "text-blue-600 bg-blue-100",
-  Revisión: "text-amber-600 bg-amber-100",
-  Borrador: "text-gray-600 bg-gray-100",
+  Completado: "text-green-800 bg-green-100",
+  "En progreso": "text-blue-800 bg-blue-100",
+  Revisión: "text-amber-800 bg-amber-100",
+  Borrador: "text-gray-500 bg-gray-100",
 };
 
 import { useState } from "react";
@@ -27,7 +27,7 @@ export default function SubtareaProyecto({
   const [done, setDone] = useState(listo);
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between border-b border-gray-100 py-4">
         <div>
           <div className="flex items-center">
             <input
@@ -39,8 +39,8 @@ export default function SubtareaProyecto({
             />
             <label
               for="mi-checkbox"
-              className={`ms-2 text-md font-medium text-gray-500 ${
-                done && "line-through"
+              className={`ms-2 text-md font-medium ${
+                done && "line-through text-gray-500"
               }`}
             >
               {titulo}
@@ -48,13 +48,15 @@ export default function SubtareaProyecto({
           </div>
           <div className="flex space-x-4 items-center">
             <div>
-              <div className="text-gray-600 text-xs">{subtitulo}</div>
+              <div className="text-gray-500 font-semibold text-xs">
+                {subtitulo}
+              </div>
             </div>
-            <span className="text-gray-600">•</span>
+            <span className="text-gray-500">•</span>
             <div>
               <div className="text-gray-500 text-xs">{subtitulo2}</div>
             </div>
-            <span className="text-gray-600">•</span>
+            <span className="text-gray-500">•</span>
             <div className="flex gap-2">
               <div>
                 <span className="flex aspect-square">
@@ -69,25 +71,25 @@ export default function SubtareaProyecto({
             </div>
           </div>
         </div>
-        <div>
+        <div className="flex items-center gap-6">
           <button
-            className={`font-medium text-xs py-1 px-3 rounded-3xl me-2 cursor-pointer ${coloresStatus[prioridad]}`}
+            className={`font-semibold  text-xs py-0.5 px-2 rounded-3xl cursor-pointer ${coloresStatus[prioridad]}`}
           >
             {prioridad}
           </button>
           <button
-            className={`font-medium rounded-3xl py-1 px-3 me-2 cursor-pointer ${coloresStatus2[estado]}`}
+            className={`font-semibold text-xs rounded-3xl py-1 px-3 cursor-pointer ${coloresStatus2[estado]}`}
           >
             {estado}
           </button>
-          <button className="text-gray-500 font-medium text-sm bg-white rounded-3xl py-1 px-3 me-2 border border-gray-300 cursor-pointer">
+          <button className="text-gray-600  text-xs bg-white rounded-3xl py-1 px-3">
             {diaLimite}
           </button>
-          <button className="bg-white rounded-lg text-xs py-1 px-3 me-2 border border-gray-300 cursor-pointer">
+          <button className="bg-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer">
             Ver
           </button>
           {!done && (
-            <button className="bg-blue-500 text-white rounded-lg text-xs py-1 px-3 me-2 border border-gray-300 cursor-pointer">
+            <button className="bg-blue-500 text-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer">
               Editar
             </button>
           )}
