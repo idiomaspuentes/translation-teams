@@ -1,17 +1,10 @@
-export default function DescripcionDelProyecto({}) {
+export default function DescripcionDelProyecto({ descripcion }) {
   return (
     <>
       <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
         <div className="space-y-4">
           <h1 className="text-xl font-medium">Descripción del proyecto</h1>
-          <p className="text-gray-600">
-            Adaptación del Evangelio de Marcos del inglés al castellano
-            siguiendo el modelo CCR v2. El paquete incluye TPL (Texto Puente
-            Literal), TPS (Texto Puente Simple), notas de traducción,
-            diccionario bíblico y preguntas de comprensión. Destinado a
-            facilitar la traducción posterior a lenguas indígenas con criterios
-            de claridad, naturalidad y fidelidad.
-          </p>
+          <p className="text-gray-600">{descripcion}</p>
           <div className="space-y-4">
             <h2 className="text-xl font-medium mt-8 mb-8">
               Especificaciones Técnicas
