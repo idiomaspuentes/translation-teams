@@ -1,6 +1,6 @@
 import ActividadReciente from "./ActividadReciente";
 
-export default function ActividadRecienteDelProyecto({ actividades }) {
+export default function ActividadRecienteTareas({ actividades }) {
   return (
     <>
       <ActividadReciente actividades={actividades} />
