@@ -1,6 +1,6 @@
 import Descripcion from "./Descripcion";
 
-export default function DescripcionDelProyecto({
+export default function DescripcionDeLaTarea({
   titulo,
   descripcion,
   secciones,
