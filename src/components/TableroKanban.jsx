@@ -7,7 +7,7 @@ export default function tableroKanban({}) {
             <h1 className="text-2xl font-bold">Tablero kanban</h1>
           </div>
           <div className="space-x-4 flex">
-            <select class="grow py-2 px-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <select className="grow py-2 px-2 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
               <option>Paquete de traducción - Marcos</option>
               <option>Paquete de traducción - 1 Juan</option>
               <option>Paquete de traducción - Santiago</option>

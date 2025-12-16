@@ -12,7 +12,7 @@ export default function ReporteDelProyecto({
           <h1 className="text-3xl font-bold">Reporte del proyecto</h1>
         </div>
         <div className="space-x-4 flex">
-          <select class="grow py-2 px-4 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <select className="grow py-2 px-4 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
             <option>
               <span>📅</span>15 Nov - 30 Nov 2025
             </option>
