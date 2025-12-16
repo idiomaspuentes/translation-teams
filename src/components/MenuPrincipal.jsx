@@ -4,7 +4,7 @@ import "./Layout.css";
 
 const MenuPrincipal = ({ iniciales }) => {
   return (
-    <div className="p-4 border-b border-gray-200 shadow">
+    <div className="py-4 px-8 border-b border-gray-200 shadow">
       <div className="flex justify-between">
         <div>
           <header className="bg-white text-blue-500 text-2xl font-bold">
