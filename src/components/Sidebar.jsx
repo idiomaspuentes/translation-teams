@@ -24,7 +24,7 @@ const Sidebar = ({}) => {
           <li className=" p-3 hover:border-r-3 border-blue-500 hover:bg-gray-100 hover:text-blue-500">
             <Link
               className="no-underline text-inherit cursor-pointer"
-              to="/tableroKanban"
+              to="/Kanban"
             >
               <span className="flex gap-4">
                 <SquareKanban />
