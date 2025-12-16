@@ -1,11 +1,9 @@
 export default function BarraDeProgreso({ porcentaje, grosor = 2 }) {
   return (
-    <div
-      className={`flex min-w-5 grow bg-gray-500/20 h-${grosor} rounded-full`}
-    >
+    <div className={`flex min-w-5 grow bg-gray-500/20 rounded-full`}>
       <div
         className="bg-blue-600 bg-gradient-to-r	from-blue-500	to-blue-700  h-full rounded-full"
-        style={{ width: porcentaje + "%" }}
+        style={{ width: porcentaje + "%", height: grosor * 4 + "px" }}
       ></div>
     </div>
   );
