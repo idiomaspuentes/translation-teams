@@ -1,6 +1,6 @@
-import ProyectoTarjeta from "./ProyectoTarjeta";
+import ProyectoTarjeta from "../components/ProyectoTarjeta";
 export default {
-  title: "Ejemplo/ProyectoTarjeta",
+  title: "Proyectos/ProyectoTarjeta",
   component: ProyectoTarjeta,
   parameters: {
     layout: "centered",

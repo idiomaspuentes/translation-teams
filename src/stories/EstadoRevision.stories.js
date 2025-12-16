@@ -1,7 +1,7 @@
-import EstadoRevision from "./EstadoRevision";
+import EstadoRevision from "../components/EstadoRevision";
 
 export default {
-  title: "Ejemplo/EstadoRevision",
+  title: "Proyectos/EstadoRevision",
   component: EstadoRevision,
   parameters: {
     layout: "centered",

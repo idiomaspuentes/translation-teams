@@ -1,6 +1,6 @@
-import ProyectoActivo from "./ProyectoActivo";
+import ProyectoActivo from "../components/ProyectoActivo";
 export default {
-  title: "Ejemplo/ProyectoActivo",
+  title: "Proyectos/ProyectoActivo",
   component: ProyectoActivo,
   parameters: {
     layout: "centered",

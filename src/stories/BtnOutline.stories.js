@@ -1,7 +1,7 @@
-import BtnOutline from "../test-comp/BtnOutline";
+import BtnOutline from "../components/BtnOutline";
 
 export default {
-  title: "Ejemplo/BtnOutline",
+  title: "Proyectos/BtnOutline",
   component: BtnOutline,
   parameters: {
     layout: "centered",

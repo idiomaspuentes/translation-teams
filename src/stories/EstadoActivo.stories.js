@@ -1,7 +1,7 @@
-import EstadoActivo from "./EstadoActivo";
+import EstadoActivo from "../components/EstadoActivo";
 
 export default {
-  title: "Ejemplo/EstadoActivo",
+  title: "Proyectos/EstadoActivo",
   component: EstadoActivo,
   parameters: {
     layout: "centered",

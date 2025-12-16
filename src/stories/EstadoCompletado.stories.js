@@ -1,7 +1,7 @@
-import EstadoCompletado from "./EstadoCompletado";
+import EstadoCompletado from "../components/EstadoCompletado";
 
 export default {
-  title: "Ejemplo/EstadoCompletado",
+  title: "Proyectos/EstadoCompletado",
   component: EstadoCompletado,
   parameters: {
     layout: "centered",

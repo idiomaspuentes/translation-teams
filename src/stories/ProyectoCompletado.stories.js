@@ -1,6 +1,6 @@
-import ProyectoCompletado from "./ProyectoCompletado";
+import ProyectoCompletado from "../components/ProyectoCompletado";
 export default {
-  title: "Ejemplo/ProyectoCompletado",
+  title: "Proyectos/ProyectoCompletado",
   component: ProyectoCompletado,
   parameters: {
     layout: "centered",

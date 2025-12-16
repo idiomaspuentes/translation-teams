@@ -1,7 +1,7 @@
-import FilaProyectoCompletado from "./FilaProyectoCompletado";
+import FilaProyectoCompletado from "../components/FilaProyectoCompletado";
 
 export default {
-  title: "Ejemplo/FilaProyectoCompletado",
+  title: "Proyectos/FilaProyectoCompletado",
   component: FilaProyectoCompletado,
   parameters: {
     layout: "centered",

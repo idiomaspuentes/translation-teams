@@ -1,7 +1,6 @@
-import FilaProyectoActivo from "./FilaProyectoActivo";
-
+import FilaProyectoActivo from "../components/FilaProyectoActivo";
 export default {
-  title: "Ejemplo/FilaProyectoActivo",
+  title: "Proyectos/FilaProyectoActivo",
   component: FilaProyectoActivo,
   parameters: {
     layout: "centered",

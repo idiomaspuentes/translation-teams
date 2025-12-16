@@ -1,7 +1,6 @@
-import FilaProyectoRevision from "./FilaProyectoRevision";
-
+import FilaProyectoRevision from "../components/FilaProyectoRevision";
 export default {
-  title: "Ejemplo/FilaProyectoRevision",
+  title: "Proyectos/FilaProyectoRevision",
   component: FilaProyectoRevision,
   parameters: {
     layout: "centered",

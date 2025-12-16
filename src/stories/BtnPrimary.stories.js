@@ -1,4 +1,4 @@
-import BtnPrimary from "./BtnPrimary";
+import BtnPrimary from "../components/BtnPrimary";
 export default {
   title: "TeamIP/BtnPrimary",
   component: BtnPrimary,

@@ -1,6 +1,6 @@
-import ProyectoRevision from "./ProyectoRevision";
+import ProyectoRevision from "../components/ProyectoRevision";
 export default {
-  title: "Ejemplo/Proyectorevision",
+  title: "Proyectos/Proyectorevision",
   component: ProyectoRevision,
   parameters: {
     layout: "centered",
