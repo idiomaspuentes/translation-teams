@@ -48,13 +48,13 @@ function ReporteProyecto() {
             porcentajeMiembrosActivos={"→ 100% participación"}
           />
         </div>
-        <div className="flex">
-          <div className="w-[50%]">
+        <div className="flex gap-8">
+          <div className="w-[65%]">
             <div className="mt-8">
               <ProgresoDiario />
             </div>
           </div>
-          <div className="w-[50%]">
+          <div className="w-[35%]">
             <div className="mt-8">
               <DistribucionDeTrabajo />
             </div>
@@ -194,7 +194,7 @@ function ReporteProyecto() {
         </div>
         <div className="mt-8">
           <EstadoTarea
-            rendimientos={[
+            datos={[
               {
                 tarea: "#TT-001 • Traducir Capítulo 1: Introducción",
                 subtitulo: "Traducción",

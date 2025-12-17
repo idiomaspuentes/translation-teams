@@ -23,8 +23,8 @@ function TimelineProyecto({
         </div>
         <div className="flex flex-col mb-6">
           <span className="font-medium">{titulo}</span>
-          <span className="text-gray-500 text-md">{descripcion}</span>
-          <span className="text-gray-500 text-sm">{fecha}</span>
+          <span className="text-gray-500 text-sm mb-2">{descripcion}</span>
+          <span className="text-gray-500 text-xs">{fecha}</span>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ function TimelineProyecto({
 export default function TimelineDelProyecto({}) {
   return (
     <>
-      <div className="bg-white rounded-xl shadow-lg border-1 border-gray-200 p-8">
+      <div className="bg-white rounded-xl shadow border-1 border-gray-200 p-8">
         <h1 className="text-xl font-medium mb-6">Timeline del proyecto</h1>
 
         <TimelineProyecto

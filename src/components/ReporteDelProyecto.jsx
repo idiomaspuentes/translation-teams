@@ -6,7 +6,7 @@ export default function ReporteDelProyecto({
   presupuesto,
 }) {
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
+    <div className="bg-white rounded-xl shadow border border-gray-200 p-8">
       <div className="flex justify-between">
         <div>
           <h1 className="text-3xl font-bold">Reporte del proyecto</h1>

@@ -44,7 +44,7 @@ function ProgresoFase({
 
 export default function ProgresoPorFase({}) {
   return (
-    <div className="bg-white rounded-xl shadow-lg border-1 border-gray-200 p-8 space-y-6">
+    <div className="bg-white rounded-xl shadow border-1 border-gray-200 p-8 space-y-6">
       <h1 className="font-medium text-xl">Progreso por fase</h1>
       <div>
         <ProgresoFase
