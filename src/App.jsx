@@ -8,6 +8,7 @@ import Kanban from "./pages/Kanban";
 import Dashboard from "./pages/Dashboard";
 import Proyectos from "./pages/Proyectos";
 import SubtareasDelProyecto from "./pages/SubtareasDelProyecto";
+import ReporteProyecto from "./pages/ReporteProyecto";
 
 const Translations = () => <h2>Lista de Traducciones</h2>;
 const Progress = () => <h2>Progreso del Equipo</h2>;
@@ -22,6 +23,7 @@ function App() {
           <Route path="/kanban" element={<Kanban />} />
           <Route path="/proyectos" element={<Proyectos />} />
           <Route path="/Subtareas" element={<SubtareasDelProyecto />} />
+          <Route path="/ReporteProyecto" element={<ReporteProyecto />} />
         </Routes>
       </Layout>
     </BrowserRouter>

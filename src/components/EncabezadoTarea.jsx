@@ -1,15 +1,15 @@
 export default function EstadoTarea({}) {
   return (
-    <div className="grid grid-cols-9 bg-gray-100 px-6 py-4 gap-6">
-      <span className="font-medium text-md text-gray-600 col-span-3">
+    <div className="grid grid-cols-9 bg-gray-100 px-6 py-4 gap-6 border-t-1 border-gray-200">
+      <span className="font-medium text-sm text-gray-700 col-span-3">
         Tarea
       </span>
-      <span className="font-medium text-md text-gray-600">Asignado</span>
-      <span className="font-medium text-md text-gray-600">Estado</span>
-      <span className="font-medium text-md text-gray-600">Progreso</span>
-      <span className="font-medium text-md text-gray-600">Palabras</span>
-      <span className="font-medium text-md text-gray-600">Tiempo</span>
-      <span className="font-medium text-md text-gray-600">Vencimiento</span>
+      <span className="font-medium text-sm text-gray-700">Asignado</span>
+      <span className="font-medium text-sm text-gray-700">Estado</span>
+      <span className="font-medium text-sm text-gray-700">Progreso</span>
+      <span className="font-medium text-sm text-gray-700">Palabras</span>
+      <span className="font-medium text-sm text-gray-700">Tiempo</span>
+      <span className="font-medium text-sm text-gray-700">Vencimiento</span>
     </div>
   );
 }
