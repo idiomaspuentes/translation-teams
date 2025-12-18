@@ -23,7 +23,7 @@ export default function TareaProyecto({
             </div>
             <div>
               <h1 className="text-xl font-medium">{titulo}</h1>
-              <h2 className="text-gray-600 text-sm ">{descripcion}</h2>
+              <h2 className="text-gray-500 text-sm ">{descripcion}</h2>
             </div>
           </div>
           <div className="flex justify-between">
@@ -42,9 +42,9 @@ export default function TareaProyecto({
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-20">
-                  <BarraDeProgreso porcentaje={75} />
+                  <BarraDeProgreso porcentaje={porcentaje} />
                 </div>
-                <span className="text-gray-600 text-xs font-medium">
+                <span className="text-gray-500 text-xs font-medium">
                   {porcentaje}%
                 </span>
               </div>
