@@ -2,12 +2,12 @@ const coloresStatus = {
   Completado: "text-green-700 bg-green-100",
   "En progreso": "text-amber-700 bg-amber-100",
   Revisión: "text-blue-700 bg-blue-100",
-  Borrador: "text-gray-700 bg-gray-100",
+  Borrador: "text-gray-500 bg-gray-100",
 };
 
 const coloresStatus2 = {
   Alta: "text-red-700 bg-red-200",
-  Media: "text-yellow-700 bg-yellow-200",
+  Media: "text-orange-700 bg-orange-200",
   Baja: "text-green-700 bg-green-200",
 };
 
@@ -48,7 +48,7 @@ export default function TablaDeTareasDelProyecto({
         {prioridad}
       </span>
       <span className=" text-md text-gray-700">{progreso}</span>
-      <span className="font-medium text-md text-gray-700">{vencimiento}</span>
+      <span className=" text-md text-gray-700">{vencimiento}</span>
 
       <span className="space-x-2">
         <button className="text-xs text-gray-700 border border-gray-300 py-1 px-2 rounded-lg cursor-pointer">
