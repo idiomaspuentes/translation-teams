@@ -3,11 +3,11 @@ import FilaTarea from "./FilaTarea";
 
 export default function EstadoTarea({ datos }) {
   return (
-    <div className="shadow-[0_0_6px_0_rgba(0,0,0,0.15)] rounded-xl">
+    <div className="bg-white shadow rounded-xl border-1 border-gray-200">
       <div className="flex justify-between items-baseline px-6 py-6 text-center p-6 rounded-lg">
-        <h1 className="text-xl font-medium">Estado detallado de tareas</h1>
+        <h1 className="text-lg font-medium">Estado detallado de tareas</h1>
         <div className=" flex gap-4">
-          <span className="font-medium text-gray-600 bg-white shadow-sm rounded-lg px-7 py-3 border border-gray-300 hover:bg-gray-100 cursor-pointer">
+          <span className="text-sm bg-white shadow rounded-lg px-6.5 py-2.5 border border-gray-300 hover:bg-gray-100 cursor-pointer">
             Exportar lista
           </span>
         </div>

@@ -1,164 +1,178 @@
-import { func } from "prop-types";
-import React, { use, useRef, useState } from "react";
-import "../index.css";
-import BtnOutline from "../components/BtnOutline";
-import BtnPrimary from "../components/BtnPrimary";
-import ProyectoTarjeta from "../components/ProyectoTarjeta";
-import ProyectoCompletado from "../components/ProyectoCompletado";
-import ProyectoRevision from "../components/ProyectoRevision";
-import ProyectoActivo from "../components/ProyectoActivo";
-import FilaProyecto from "../components/FilaProyecto";
-import FilaProyectoActivo from "../components/FilaProyectoActivo";
-import FilaProyectoRevision from "../components/FilaProyectoRevision";
-import FilaProyectoCompletado from "../components/FilaProyectoCompletado";
+import BreadCrumbs from "../components/BreadCrumbs";
+import EncabezadoProyecto from "../components/EncabezadoProyecto";
+import ProgresoGeneralProyecto from "../components/ProgresoGeneralProyecto";
+import DescripcionDelProyecto from "../components/DescripcionDelProyecto";
+import EquipoDelProyecto from "../components/EquipoDelProyecto";
+import ArchivosYRecursosDelProyecto from "../components/ArchivosYRecursosDelProyecto";
+import ActividadRecienteDelProyecto from "../components/ActividadRecienteDelProyecto";
 
-export default function Proyectos() {
-  {
-    /* onClick  */
-  }
-
-  const [activeContent, setActiveContent] = useState("content1");
-
-  const handleclick = (contentId) => {
-    setActiveContent(contentId);
-  };
-  console.log(activeContent);
-
+function Proyectos() {
   return (
     <>
-      {/* Contenido Principal */}
-      <main className="p-8 overflow-y-auto">
-        <div className="flex justify-between items-center mb-2">
-          <h1 className="text-4xl font-bold">Proyectos</h1>
-          <div className="flex gap-4">
-            <BtnOutline name={"importar"} />
-            <BtnOutline name={"Exportar"} />
-            <BtnPrimary name={"+ Nuevo Proyecto"} />
-          </div>
-        </div>
-
-        {/* Filtros y Búsqueda */}
-        <div className="flex gap-4 mb-8 items-center flex-wrap">
-          <input
-            type="text"
-            className="flex-1 m-w-[400px] p-3 border-1 border-solid border-[#d1d5db] rounded-lg text-base"
-            placeholder="Buscar proyectos..."
+      <div className="m-8">
+        <BreadCrumbs
+          links={[
+            {
+              titulo: "Proyectos",
+              link: "http://milink.com",
+            },
+          ]}
+          tituloActual={"Paquete de traducción - Marcos"}
+        />
+        <div className="mt-6">
+          <EncabezadoProyecto
+            subtitulo={"CCR v2 • Iglesia Bautista Central • EN → ES"}
+            fechaInicio={"15 Noviembre 2024"}
+            fechaEntrega={"30 Noviembre 2024"}
+            diasRestantes={"5 días"}
+            capitulosTotales={"16 capítulos"}
           />
-          <select className="p-3 border-1 border-solid border-[#d1d5db] rounded-lg bg-white min-w-[150px]">
-            <option>Todos los estados</option>
-            <option>Activos</option>
-            <option>En revisión</option>
-            <option>Completados</option>
-            <option>Pausados</option>
-          </select>
-          <select className="p-3 border-1 border-solid border-[#d1d5db] rounded-lg bg-white min-w-[150px]">
-            <option>Todos los clientes</option>
-            <option>TechCorp</option>
-            <option>DevTools</option>
-            <option>Marketing Pro</option>
-            <option>Global Inc</option>
-          </select>
-          <select className="p-3 border-1 border-solid border-[#d1d5db] rounded-lg bg-white min-w-[150px]">
-            <option>Todos los idiomas</option>
-            <option>Español → Inglés</option>
-            <option>Inglés → Francés</option>
-            <option>Alemán → Español</option>
-          </select>
-          <div className="flex border-1 border-solid border-[#d1d5db] rounded-lg overflow-hidden">
-            {/* pasarlo a componente icon - revisar el active */}
-            <button
-              className={`py-2 px-4 border-none cursor-pointer  active:bg-[#3b82f6] ${
-                activeContent === "content1" && "bg-[#3b82f6]"
-              }`}
-              onClick={() => handleclick("content1")}
-            >
-              📊
-            </button>
-            <button
-              className={`py-2 px-4 border-none  cursor-pointer active:bg-[#3b82f6] ${
-                activeContent === "content2" && "bg-[#3b82f6]"
-              }`}
-              onClick={() => handleclick("content2")}
-            >
-              📋
-            </button>
+        </div>
+        <div className="mt-8">
+          <ProgresoGeneralProyecto
+            titulo={"Progreso General"}
+            boton={"Ver reporte completo"}
+            porcentaje={"75"}
+          />
+        </div>
+        <div className="flex gap-8">
+          <div className="mt-8 w-[60%] space-y-8">
+            <DescripcionDelProyecto
+              titulo="Descripción del proyecto"
+              descripcion="Adaptación del Evangelio de Marcos del inglés al castellano siguiendo el modelo CCR v2. El paquete incluye TPL (Texto Puente Literal), TPS (Texto Puente Simple), notas de traducción, diccionario bíblico y preguntas de comprensión. Destinado a facilitar la traducción posterior a lenguas indígenas con criterios de claridad, naturalidad y fidelidad"
+              secciones={[
+                {
+                  titulo: "Especificaciones Técnicas",
+                  propiedades: [
+                    {
+                      nombre: "Idioma Origen",
+                      valor: "Inglés",
+                    },
+                    {
+                      nombre: "Idioma Destino",
+                      valor: "Castellano",
+                    },
+                    {
+                      nombre: "Tipo de Contenido",
+                      valor: "Texto Bíblico - Evangelio",
+                    },
+                    {
+                      nombre: "Plataforma de Publicación",
+                      valor: "Door43.org",
+                    },
+                    {
+                      nombre: "Herramientas",
+                      valor: "translationCore",
+                    },
+                    {
+                      nombre: "Modelo CCR",
+                      valor: "Versión 2 - Publicación Progresiva",
+                    },
+                  ],
+                },
+                {
+                  titulo: "Requisitos Especiales",
+                  propiedades: [
+                    {
+                      nombre: "TPL (Texto Puente Literal)",
+                      valor: "Fiel a estructuras originales",
+                    },
+                    {
+                      nombre: "TPS (Texto Puente Simple)",
+                      valor: "Claro y natural",
+                    },
+                    {
+                      nombre: "Aprobación Pastoral",
+                      valor: "Pastores Latinoamericanos",
+                    },
+                    {
+                      nombre: "Criterios de Calidad",
+                      valor: "Claridad, Naturalidad, Fidelidad",
+                    },
+                  ],
+                },
+              ]}
+            />
+            <ActividadRecienteDelProyecto
+              actividades={[
+                {
+                  icono: "✓",
+                  colorIcono: "bg-blue-500, text-white",
+                  titulo: "Porción publicada: Marcos 1:1-8",
+                  descripcion:
+                    "María García completó TPL y TPS del bautismo de Juan - Publicado en Door43",
+                  fecha: "Hace 2 horas",
+                },
+                {
+                  icono: "📝",
+                  colorIcono: "bg-blue-500",
+                  titulo: "Aprobación pastoral completada",
+                  descripcion:
+                    "Pastor Carlos aprobó la adaptación teológica de Marcos 2:1-12",
+                  fecha: "Hace 4 horas",
+                },
+                {
+                  icono: "📤",
+                  colorIcono: "bg-blue-500",
+                  titulo: "Armonización completada",
+                  descripcion:
+                    "Juan López armonizó TPL/TPS con notas de traducción para Marcos 3",
+                  fecha: "Ayer a las 16:30",
+                },
+                {
+                  icono: "👥",
+                  colorIcono: "bg-blue-500",
+                  titulo: "Voluntario asignado",
+                  descripcion:
+                    "Laura Silva se unió como especialista en preguntas de traducción",
+                  fecha: "Ayer a las 14:15",
+                },
+                {
+                  icono: "🚀",
+                  colorIcono: "bg-blue-500",
+                  titulo: "Paquete CCR v2 iniciado",
+                  descripcion:
+                    "Iglesia Bautista Central envió voluntarios para Marcos",
+                  fecha: "15 Nov 2024",
+                },
+              ]}
+            />
+          </div>
+          <div className="mt-8 w-[40%] space-y-8">
+            <EquipoDelProyecto />
+            <ArchivosYRecursosDelProyecto
+              archivos={[
+                {
+                  icono: "📄",
+                  colorIcono: "bg-blue-500",
+                  titulo: "ULT_Mark_EN.usfm",
+                  subtitulo: "156 KB • Texto fuente inglés",
+                },
+                {
+                  icono: "🎨",
+                  colorIcono: "bg-blue-500",
+                  titulo: "TPL_Marcos_ES.usfm",
+                  subtitulo: "142 KB • Texto Puente Literal",
+                },
+                {
+                  icono: "📚",
+                  colorIcono: "bg-blue-500",
+                  titulo: "TPS_Marcos_ES.usfm",
+                  subtitulo: "138 KB • Texto Puente Simple",
+                },
+                {
+                  icono: "🔧",
+                  colorIcono: "bg-blue-500",
+                  titulo: "Notas_Traduccion_Marcos.md",
+                  subtitulo: "89 KB • Notas explicativas",
+                },
+              ]}
+            />
           </div>
         </div>
-        {/* Vista de Tarjetas */}
-        {activeContent === "content1" && (
-          <div
-            className="grid grid-cols-[repeat(auto-fill,_minmax(380px,_1fr))] gap-6"
-            id="cards-view"
-          >
-            <ProyectoTarjeta />
-            <ProyectoCompletado />
-            <ProyectoActivo />
-            <ProyectoRevision />
-            <ProyectoActivo />
-            <ProyectoRevision />
-          </div>
-        )}
-
-        {/* Vista de Tabla --*/}
-        {activeContent === "content2" && (
-          <div
-            className="bg-white rounded-xl shadow-2xs border-1 border-solid border-[#f1f5f9] overflow-hidden "
-            id="table-view"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="hover:bg-[#f8fafc]">
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Proyecto
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Cliente
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Idiomas
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Progreso
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Palabras
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Equipo
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Entrega
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Estado
-                    </th>
-                    <th className="py-4 px-6 text-left border-b-2 border-solid border-[#f1f5f9] bg-[#f8fafc] font-medium text-[#374151] text-sm">
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <FilaProyecto
-                    proyecto={"Manual de Usuario - App Mobile"}
-                    fechaCreado={"Creado: 15 Nov 2024"}
-                    cliente={"TechCorp"}
-                    idiomas={"ES → EN"}
-                    progreso={"75%"}
-                    palabras={"1,250"}
-                    equipo={"3"}
-                    fechaEntrega={"30 Nov 2024"}
-                    estado={"Activo"}
-                  />
-                  <FilaProyectoActivo />
-                  <FilaProyectoRevision />
-                  <FilaProyectoCompletado />
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-      </main>
+      </div>
     </>
   );
 }
+
+export default Proyectos;
