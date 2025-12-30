@@ -4,7 +4,7 @@ export default function MenuPrincipalProyecto({}) {
       <div>
         <div className="flex justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Proyectos</h1>
+            <h1 className="text-4xl font-bold">Proyectos</h1>
           </div>
           <div className="space-x-4">
             <button className="px-6 py-3 text-sm border border-gray-300 rounded-lg cursor-pointer">
