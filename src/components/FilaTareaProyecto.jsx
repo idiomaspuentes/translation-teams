@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const coloresStatus = {
   Completado: "text-green-700 bg-green-100",
   "En progreso": "text-amber-700 bg-amber-100",
@@ -51,9 +53,13 @@ export default function TablaDeTareasDelProyecto({
       <span className=" text-md text-gray-700">{vencimiento}</span>
 
       <span className="space-x-2">
-        <button className="text-xs text-gray-700 border border-gray-300 py-1 px-2 rounded-lg cursor-pointer">
+        <Link
+          to="/subtareas"
+          className="text-xs text-gray-700 border border-gray-300 py-1 px-2 rounded-lg cursor-pointer"
+          reloadDocument
+        >
           Ver
-        </button>
+        </Link>
         <button className="text-xs text-white bg-blue-500 py-1 px-2 rounded-lg cursor-pointer">
           Editar
         </button>
