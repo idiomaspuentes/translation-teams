@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BarraDeProgreso from "../components/BarraDeProgreso";
 
 export function ProgresoGeneralProyecto({ titulo, boton, porcentaje }) {
@@ -6,9 +7,13 @@ export function ProgresoGeneralProyecto({ titulo, boton, porcentaje }) {
       <span className="flex justify-between">
         <h2 className="text-xl font-medium text-gray-800">{titulo}</h2>
         <div>
-          <button className="bg-white text-gray-800 border border-gray-300 items-center font-medium text-md rounded-lg px-6 py-3 hover:bg-gray-100 cursor-pointer">
+          <Link
+            to="/reporte-proyecto"
+            className="bg-white text-gray-800 border border-gray-300 items-center font-medium text-md rounded-lg px-6 py-3 hover:bg-gray-100 cursor-pointer"
+            reloadDocument
+          >
             {boton}
-          </button>
+          </Link>
         </div>
       </span>
       <div className="flex gap-6">

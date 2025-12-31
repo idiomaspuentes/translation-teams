@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import EstadoRevision from "./EstadoRevision";
 function ProyectoTarjeta() {
   return (
@@ -71,24 +72,27 @@ function ProyectoTarjeta() {
       </div>
       {/* Component button small */}
       <div className="flex gap-2">
-        <a
-          href="project-detail.html?id=1"
+        <Link
+          to="/proyecto"
           className="py-2 px-2 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-[#3b82f6] text-white hover:bg-[#2563eb] text-[0.875rem]"
+          reloadDocument
         >
           Ver Detalles
-        </a>
-        <a
-          href="project-tasks.html?id=1"
+        </Link>
+        <Link
+          to="/tareas"
           className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
+          reloadDocument
         >
           Tareas
-        </a>
-        <a
-          href="kanban.html?project=1"
+        </Link>
+        <Link
+          to="/kanban"
           className="py-2 px-4 rounded-lg font-medium cursor-pointer transition-[all_0.2s] no-underline inline-flex items-center gap-2 bg-transparent border-1 border-solid border-[#d1d5db] text-[#374151] hover:bg-[#f9fafb] text-[0.875rem]"
+          reloadDocument
         >
           Kanban
-        </a>
+        </Link>
       </div>
     </div>
   );

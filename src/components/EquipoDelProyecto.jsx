@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function RendimientoPersona({ iniciales, nombre, rol, capitulos }) {
   return (
     <div className="bg-gray-50 rounded-xl p-5">
@@ -51,9 +53,13 @@ export default function EquipoDelProyecto({}) {
         rol="Especialista Preguntas"
         capitulos="3 capítulos • Preguntas de Traducción"
       />
-      <button className="bg-white border border-gray-300 text-md text-gray-800 font-medium w-full py-4 rounded-lg hover:bg-gray-50 cursor-pointer">
+      <Link
+        to="/tareas"
+        className="flex justify-center bg-white border border-gray-300 text-md text-gray-800 font-medium w-full py-3 text-center items-center rounded-lg hover:bg-gray-50 cursor-pointer"
+        reloadDocument
+      >
         Ver todas las tareas
-      </button>
+      </Link>
     </div>
   );
 }

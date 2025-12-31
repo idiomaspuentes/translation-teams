@@ -12,6 +12,7 @@ const coloresStatus2 = {
 };
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SubtareaProyecto({
   listo,
@@ -85,9 +86,13 @@ export default function SubtareaProyecto({
           <button className="text-gray-600  text-xs bg-white rounded-3xl py-1 px-3">
             {vencimiento}
           </button>
-          <button className="bg-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer">
+          <Link
+            to="/subtareas"
+            className="bg-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer"
+            reloadDocument
+          >
             Ver
-          </button>
+          </Link>
           {!done && (
             <button className="bg-blue-500 text-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer">
               Editar
