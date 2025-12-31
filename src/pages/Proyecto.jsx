@@ -6,7 +6,7 @@ import EquipoDelProyecto from "../components/EquipoDelProyecto";
 import ArchivosYRecursosDelProyecto from "../components/ArchivosYRecursosDelProyecto";
 import ActividadRecienteDelProyecto from "../components/ActividadRecienteDelProyecto";
 
-function Proyectos() {
+function Proyecto() {
   return (
     <>
       <div className="m-8">
@@ -175,4 +175,4 @@ function Proyectos() {
   );
 }
 
-export default Proyectos;
+export default Proyecto;

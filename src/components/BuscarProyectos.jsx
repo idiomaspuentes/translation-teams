@@ -1,4 +1,10 @@
-export default function BuscarProyectos({}) {
+import { useEffect, useState } from "react";
+
+export default function BuscarProyectos({ onChange }) {
+  const [toggle, setToggle] = useState(true);
+  useEffect(() => {
+    onChange(toggle);
+  }, [toggle]);
   return (
     <>
       <div>
@@ -31,10 +37,24 @@ export default function BuscarProyectos({}) {
             </select>
           </div>
           <div className="flex">
-            <button className="bg-blue-500 px-3 border border-l-lg border-gray-300 rounded-l-lg">
+            <button
+              onClick={() => {
+                setToggle(true);
+              }}
+              className={`${
+                toggle ? "bg-blue-500" : "bg-white"
+              } px-4 py-1 border border-l-lg border-gray-300 rounded-l-lg cursor-pointer text-sm`}
+            >
               📊
             </button>
-            <button className="bg-white px-3 border border-r-lg border-gray-300 rounded-r-lg">
+            <button
+              onClick={() => {
+                setToggle(false);
+              }}
+              className={`${
+                !toggle ? "bg-blue-500" : "bg-white"
+              } px-4 py-1 border border-r-lg border-gray-300 rounded-r-lg cursor-pointer text-sm`}
+            >
               📋
             </button>
           </div>
