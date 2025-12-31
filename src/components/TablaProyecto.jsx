@@ -10,6 +10,7 @@ export default function TablaProyecto({ datos }) {
           (
             {
               proyecto,
+              subtitulo,
               cliente,
               idiomas,
               progreso,
@@ -24,6 +25,7 @@ export default function TablaProyecto({ datos }) {
             return (
               <TablaFilaProyecto
                 proyecto={proyecto}
+                subtitulo={subtitulo}
                 cliente={cliente}
                 idiomas={idiomas}
                 progreso={progreso}
