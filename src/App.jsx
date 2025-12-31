@@ -10,6 +10,7 @@ import Proyectos from "./pages/Proyectos";
 import SubtareasDelProyecto from "./pages/SubtareasDelProyecto";
 import ReporteProyecto from "./pages/ReporteProyecto";
 import PaginaPrincipalProyecto from "./pages/PaginaPrincipalProyecto";
+import TareasProyecto from "./pages/TareasProyecto";
 
 const Translations = () => <h2>Lista de Traducciones</h2>;
 const Progress = () => <h2>Progreso del Equipo</h2>;
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Subtareas" element={<SubtareasDelProyecto />} />
           <Route path="/ReporteProyecto" element={<ReporteProyecto />} />
           <Route path="/Pagina" element={<PaginaPrincipalProyecto />} />
+          <Route path="/tareas" element={<TareasProyecto />} />
         </Routes>
       </Layout>
     </BrowserRouter>
