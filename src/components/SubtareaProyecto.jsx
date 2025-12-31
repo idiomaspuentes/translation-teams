@@ -15,14 +15,14 @@ import { useState } from "react";
 
 export default function SubtareaProyecto({
   listo,
-  titulo,
+  tarea,
   subtitulo,
   subtitulo2,
   iniciales,
   asignado,
   prioridad,
   estado,
-  diaLimite,
+  vencimiento,
 }) {
   const [done, setDone] = useState(listo);
   return (
@@ -43,7 +43,7 @@ export default function SubtareaProyecto({
                 done && "line-through text-gray-500"
               }`}
             >
-              {titulo}
+              {tarea}
             </label>
           </div>
           <div className="flex space-x-4 items-center">
@@ -83,7 +83,7 @@ export default function SubtareaProyecto({
             {estado}
           </button>
           <button className="text-gray-600  text-xs bg-white rounded-3xl py-1 px-3">
-            {diaLimite}
+            {vencimiento}
           </button>
           <button className="bg-white rounded-lg text-xs py-1 px-3 border border-gray-300 cursor-pointer">
             Ver

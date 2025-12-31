@@ -20,14 +20,14 @@ export default function ListaDeTareasDelProyecto({ fases }) {
                   <>
                     <SubtareaProyecto
                       listo={tarea.listo}
-                      titulo={tarea.titulo}
+                      tarea={tarea.tarea}
                       subtitulo={tarea.subtitulo}
                       subtitulo2={tarea.subtitulo2}
                       iniciales={tarea.iniciales}
                       asignado={tarea.asignado}
                       prioridad={tarea.prioridad}
                       estado={tarea.estado}
-                      diaLimite={tarea.diaLimite}
+                      vencimiento={tarea.vencimiento}
                     />
 
                     {tarea.subtareas && (
